@@ -7,12 +7,10 @@ import org.loose.fis.registration.example.exceptions.CouldNotWriteUsersException
 import org.loose.fis.registration.example.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.registration.example.model.User;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -21,18 +19,17 @@ import java.util.Objects;
 public class UserService {
 
     private static List<User> users;
+    public static final Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
 
     public static void loadUsersFromFile() throws IOException {
 
-        String userHome = System.getProperty("user.home");
-        Path usersPath = Paths.get(userHome, ".registration-example", "config", "users.json");
-        if (!Files.exists(usersPath)) {
-            FileUtils.copyFile(new File(UserService.class.getClassLoader().getResource("users.json").getFile()), usersPath.toFile());
+        if (!Files.exists(USERS_PATH)) {
+            FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), USERS_PATH.toFile());
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
 
-        users = objectMapper.readValue(usersPath.toFile(), new TypeReference<List<User>>() {
+        users = objectMapper.readValue(USERS_PATH.toFile(), new TypeReference<List<User>>() {
         });
     }
 
@@ -52,7 +49,7 @@ public class UserService {
     private static void persistUsers() {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(Paths.get("./config/users.json").toFile(), users);
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(USERS_PATH.toFile(), users);
         } catch (IOException e) {
             throw new CouldNotWriteUsersException();
         }
