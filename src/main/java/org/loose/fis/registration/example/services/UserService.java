@@ -2,12 +2,16 @@ package org.loose.fis.registration.example.services;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.io.FileUtils;
 import org.loose.fis.registration.example.exceptions.CouldNotWriteUsersException;
 import org.loose.fis.registration.example.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.registration.example.model.User;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -19,9 +23,16 @@ public class UserService {
     private static List<User> users;
 
     public static void loadUsersFromFile() throws IOException {
+
+        String userHome = System.getProperty("user.home");
+        Path usersPath = Paths.get(userHome, ".registration-example", "config", "users.json");
+        if (!Files.exists(usersPath)) {
+            FileUtils.copyFile(new File(UserService.class.getClassLoader().getResource("users.json").getFile()), usersPath.toFile());
+        }
+
         ObjectMapper objectMapper = new ObjectMapper();
 
-        users = objectMapper.readValue(Paths.get("./config/users.json").toFile(), new TypeReference<List<User>>() {
+        users = objectMapper.readValue(usersPath.toFile(), new TypeReference<List<User>>() {
         });
     }
 
