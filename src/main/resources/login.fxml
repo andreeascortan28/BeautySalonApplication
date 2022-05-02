@@ -51,14 +51,14 @@
                     </font>
                 </Label>
                 <ChoiceBox fx:id="role" layoutX="163.0" layoutY="187.0" opacity="0.92" prefHeight="15.0" prefWidth="112.0" style="-fx-background-color: #ff8585;" />
-                <Button fx:id="loginButton" layoutX="76.0" layoutY="259.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="218.0" style="-fx-background-color: #ff8585;" text="Login" textFill="WHITE">
+                <Button fx:id="loginButton" onAction="#handleLoginAction" layoutX="76.0" layoutY="259.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="218.0" style="-fx-background-color: #ff8585;" text="Login" textFill="WHITE">
                     <font>
                         <Font name="Century Gothic" size="15.0" />
                     </font>
                 </Button>
                 <Text fx:id="loginUserMessage" fill="#ff8585" layoutX="178.0" layoutY="246.0" />
                 <Text fill="#ff8585" layoutX="112.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You don't have an account?" textAlignment="CENTER" />
-                <Button fx:id="registerButton" layoutX="143.0" layoutY="335.0" mnemonicParsing="false" style="-fx-background-color: #ff8585;" text="Register here" textFill="WHITE" />
+                <Button fx:id="registerButton" onAction="#handleRegisterAction" layoutX="143.0" layoutY="335.0" mnemonicParsing="false" style="-fx-background-color: #ff8585;" text="Register here" textFill="WHITE" />
             </children>
         </AnchorPane>
     </center>

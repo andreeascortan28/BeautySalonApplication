@@ -4,6 +4,9 @@ import static org.loose.fis.bsa.services.FileSystemService.getPathToFile;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.bsa.exceptions.UsernameAlreadyExistsException;
+import org.loose.fis.bsa.exceptions.UsernameDoesNotExistException;
+import org.loose.fis.bsa.exceptions.WrongPasswordException;
+import org.loose.fis.bsa.exceptions.WrongRoleException;
 import org.loose.fis.bsa.model.User;
 
 import java.nio.charset.StandardCharsets;
@@ -22,6 +25,24 @@ public class UserService {
                 .openOrCreate("test", "test");
 
         userRepository = database.getRepository(User.class);
+    }
+
+    public static void login (String username, String password, String role) throws UsernameDoesNotExistException, WrongPasswordException, WrongRoleException {
+        int verifPass = 1, verifUser = 1, verifRole = 1;
+        /* devine 0 daca exista */
+        for(User user : userRepository.find())
+        {
+            if(Objects.equals(username, user.getUsername())) verifUser = 0;
+            if(Objects.equals(encodePassword(username, password), user.getPassword())) verifPass = 0;
+            if(Objects.equals(role, user.getRole())) verifRole = 0;
+        }
+        if(verifUser == 1)
+            throw new UsernameDoesNotExistException(username);
+        if(verifPass == 1)
+            throw new WrongPasswordException();
+        if(verifRole == 1)
+            throw new WrongRoleException();
+
     }
 
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
