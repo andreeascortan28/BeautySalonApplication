@@ -1,4 +1,5 @@
 package org.loose.fis.bsa.services;
+import static org.loose.fis.bsa.services.FileSystemService.getPathToFile;
 
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
@@ -10,7 +11,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
-import static org.loose.fis.bsa.services.FileSystemService.getPathToFile;
 
 public class UserService {
 
