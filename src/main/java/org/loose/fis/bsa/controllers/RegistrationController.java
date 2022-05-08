@@ -12,15 +12,16 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.loose.fis.bsa.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.bsa.services.UserService;
+import javafx.scene.control.Label;
 
 import java.io.IOException;
 
 public class RegistrationController {
 
     @FXML
-    private Text registrationMessage;
+    private Label registrationMessage;
     @FXML
-    private PasswordField passwordField;
+    private TextField passwordField;
     @FXML
     private TextField usernameField;
     @FXML
@@ -40,11 +41,12 @@ public class RegistrationController {
 
     @FXML
     public void initialize() {
-        role.getItems().addAll("Client", "Employee");
+        role.getItems().addAll("Customer", "Employee");
+        //role.setValue("");
     }
 
     @FXML
-    public void handleRegisterAction() {
+    public void handleRegisterAction() throws IOException{
         try {
             UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
             registrationMessage.setText("Account created successfully!");
@@ -53,7 +55,7 @@ public class RegistrationController {
         }
     }
 
-    @FXML
+    /*@FXML
     public void Backaction() throws Exception{
         try{
             Parent root= FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
@@ -64,5 +66,5 @@ public class RegistrationController {
         } catch(IOException e){
             registrationMessage.setText("eroare!");
         }
-    }
+    }*/
 }

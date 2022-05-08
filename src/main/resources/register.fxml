@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.bsa.controllers.RegistrationController">
     <left>
         <AnchorPane prefHeight="407.0" prefWidth="228.0" BorderPane.alignment="CENTER">
             <children>
@@ -37,8 +37,8 @@
                     </font>
                 </Label>
                 <TextField fx:id="lastNameField" layoutX="86.0" layoutY="72.0" prefHeight="26.0" prefWidth="173.0" promptText="LastName" />
-                <ChoiceBox fx:id="role" layoutX="10.0" layoutY="307.0" prefWidth="150.0" style="-fx-background-color: ff8585;" />
-                <Button fx:id="registerButton" layoutX="210.0" layoutY="308.0" mnemonicParsing="false" style="-fx-background-color: ff8585;" text="Register" textFill="#faf7f7">
+                <ChoiceBox fx:id="role" layoutX="17.0" layoutY="342.0" prefWidth="150.0" style="-fx-background-color: ff8585;" />
+                <Button fx:id="registerButton" layoutX="211.0" layoutY="343.0" mnemonicParsing="false" onAction="#handleRegisterAction" style="-fx-background-color: ff8585;" text="Register" textFill="#faf7f7">
                     <font>
                         <Font name="Century Gothic" size="12.0" />
                     </font>
@@ -73,6 +73,7 @@
                     </font>
                 </Label>
                 <TextField fx:id="departmentField" layoutX="86.0" layoutY="255.0" prefHeight="26.0" prefWidth="173.0" promptText="Department" />
+            <Label fx:id="registrationMessage" layoutX="61.0" layoutY="300.0" prefHeight="18.0" prefWidth="190.0" />
             </children>
         </AnchorPane>
     </right>
