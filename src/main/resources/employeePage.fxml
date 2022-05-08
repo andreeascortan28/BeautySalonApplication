@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.2841" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.2841" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.bsa.controllers.HomePageEmployeeController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #ff8585;">
          <children>
@@ -25,27 +25,27 @@
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #ffffff;">
          <children>
-            <Button fx:id="editReservationButton" layoutX="150.0" layoutY="24.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #ff8585;" text="Edit reservations" textAlignment="JUSTIFY" textFill="WHITE">
+            <Button fx:id="editReservationsButton" layoutX="150.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleEditReservation" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #ff8585;" text="Edit reservations" textAlignment="JUSTIFY" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="changePricesButton" layoutX="150.0" layoutY="76.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #ff8585;" text="Change prices" textAlignment="JUSTIFY" textFill="WHITE">
+            <Button fx:id="changePricesButton" layoutX="150.0" layoutY="76.0" mnemonicParsing="false" onAction="#handleChangePrices" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #ff8585;" text="Change prices" textAlignment="JUSTIFY" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="deleteReservationsButton" layoutX="150.0" layoutY="130.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #ff8585;" text="Delete reservations" textAlignment="JUSTIFY" textFill="WHITE">
+            <Button fx:id="deleteReservationsButton" layoutX="150.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleDeleteReservations" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #ff8585;" text="Delete reservations" textAlignment="JUSTIFY" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="viewScheduleButton" layoutX="150.0" layoutY="181.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #ff8585;" text="View schedule" textAlignment="JUSTIFY" textFill="WHITE">
+            <Button fx:id="viewScheduleButton" layoutX="150.0" layoutY="181.0" mnemonicParsing="false" onAction="#handleViewSchedule" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #ff8585;" text="View schedule" textAlignment="JUSTIFY" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="signOutButton" layoutX="268.0" layoutY="244.0" mnemonicParsing="false" style="-fx-background-color: #ff8585;" text="Sign out" textFill="WHITE">
+            <Button fx:id="signOutButton" layoutX="268.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleSignOut" style="-fx-background-color: #ff8585;" text="Sign out" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="12.0" />
                </font>
