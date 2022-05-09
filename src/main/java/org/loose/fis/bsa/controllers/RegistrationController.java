@@ -46,7 +46,7 @@ public class RegistrationController {
     }
 
     @FXML
-    public void handleRegisterAction() throws IOException{
+    public void handleRegisterAction() throws IOException, UsernameAlreadyExistsException{
         try {
             UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
             registrationMessage.setText("Account created successfully!");
