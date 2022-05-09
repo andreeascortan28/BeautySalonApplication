@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.2841" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.2841" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.bsa.controllers.MakeReservationController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #ff8585;">
          <children>
@@ -19,7 +19,7 @@
                   <Image url="@Images/beautysalonpatrat.jpg" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="264.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make a reservation">
+            <Text fill="WHITE" layoutX="264.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make a reservation" textAlignment="CENTER">
                <font>
                   <Font name="Century Gothic Bold" size="24.0" />
                </font>
@@ -52,7 +52,7 @@
                   <Font name="Century Gothic" size="15.0" />
                </font>
             </Text>
-            <Button fx:id="goBackButton" layoutX="123.0" layoutY="239.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="100.0" style="-fx-background-color: #ff8585;" text="Go Back" textFill="WHITE">
+            <Button fx:id="backButton" layoutX="90.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="29.0" prefWidth="100.0" style="-fx-background-color: #ff8585;" text="Back" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="15.0" />
                </font>
