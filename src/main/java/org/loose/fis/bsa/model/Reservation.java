@@ -6,13 +6,11 @@ public class Reservation {
     private String hour;
     private String date;
     private String department;
-    private String facility;
 
 
-    public Reservation(String username, String department, String facility, String date, String hour) {
+    public Reservation(String username, String department, String date, String hour) {
         this.username = username;
         this.department = department;
-        this.facility = facility;
         this.date = date;
         this.hour = hour;
     }
@@ -49,11 +47,4 @@ public class Reservation {
         this.department = department;
     }
 
-    public String getFacility() {
-        return facility;
-    }
-
-    public void setFacility(String facility) {
-        this.facility = facility;
-    }
 }

@@ -51,12 +51,12 @@ public class LoginController {
     @FXML
     public void handleLoginAction() throws UsernameDoesNotExistException, WrongPasswordException, WrongRoleException, IOException {
         try {
-            System.out.println("handle login action");
+            //System.out.println("handle login action");
             UserService.checkCredentials(usernameField.getText(), passwordField.getText(), (String) role.getValue());
             loginUserMessage.setText("Login successfully!");
 
             selectedRole = (String) role.getValue();
-            System.out.println("selected role" + selectedRole);
+            //System.out.println("selected role" + selectedRole);
 
             if (selectedRole.equals("Customer")) {
 

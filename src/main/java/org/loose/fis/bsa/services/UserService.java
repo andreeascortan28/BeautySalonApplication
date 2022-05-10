@@ -3,11 +3,8 @@ import static org.loose.fis.bsa.services.FileSystemService.getPathToFile;
 
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
-import org.loose.fis.bsa.exceptions.UsernameAlreadyExistsException;
-import org.loose.fis.bsa.exceptions.UsernameDoesNotExistException;
-import org.loose.fis.bsa.exceptions.WrongPasswordException;
-import org.loose.fis.bsa.exceptions.WrongRoleException;
-import org.loose.fis.bsa.model.LoggedUser;
+import org.loose.fis.bsa.exceptions.*;
+import org.loose.fis.bsa.model.Reservation;
 import org.loose.fis.bsa.model.User;
 
 import java.nio.charset.StandardCharsets;
@@ -20,6 +17,10 @@ public class UserService {
 
     private static ObjectRepository<User> userRepository;
 
+    private static ObjectRepository<Reservation> reservationForUserRepository;
+
+    private static ObjectRepository<Reservation> reservationRepository;
+
     private static Nitrite database;
 
     public static void initDatabase() {
@@ -29,7 +30,16 @@ public class UserService {
                 .openOrCreate("test", "test");
 
         userRepository = database.getRepository(User.class);
+        reservationForUserRepository = database.getRepository(Reservation.class);
+        reservationRepository = database.getRepository(Reservation.class);
 
+    }
+
+
+
+    public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
+        checkUserDoesNotAlreadyExist(username);
+        userRepository.insert(new User(username, encodePassword(username, password), role));
     }
 
     public static void checkCredentials(String username, String password, String role) throws UsernameDoesNotExistException, WrongPasswordException, WrongRoleException {
@@ -56,19 +66,29 @@ public class UserService {
     }
 
 
-    public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
-        checkUserDoesNotAlreadyExist(username);
-        userRepository.insert(new User(username, encodePassword(username, password), role));
-    }
-
-
-
     private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException {
         for (User user : userRepository.find()) {
             if (Objects.equals(username, user.getUsername()))
                 throw new UsernameAlreadyExistsException(username);
         }
     }
+
+
+
+    public static void addReservation(String username, String department, String date, String hour) throws EmptyDateFieldException, EmptyDepartmentFieldException, EmptyHourFieldException {
+        checkEmptyFieldForReservation(username, department, date, hour);
+        reservationRepository.insert(new Reservation(username, department, date, hour));
+    }
+
+    public static void checkEmptyFieldForReservation(String username, String department, String date, String hour) throws EmptyDateFieldException, EmptyDepartmentFieldException, EmptyHourFieldException {
+        if(department == "")
+            throw new EmptyDepartmentFieldException();
+        else if(date == "")
+            throw new EmptyDateFieldException();
+        else if(hour == "")
+            throw new EmptyHourFieldException();
+    }
+
 
     /*
     public static void login() throws UsernameDoesNotExistException, WrongRoleException, WrongPasswordException {
