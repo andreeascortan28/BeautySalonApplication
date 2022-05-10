@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<SplitPane dividerPositions="0.2841" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.bsa.controllers.MakeReservationController">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #ff8585;">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="138.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/beautysalonpatrat.jpg" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="264.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make a reservation" textAlignment="CENTER">
+               <font>
+                  <Font name="Century Gothic Bold" size="24.0" />
+               </font>
+            </Text>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <Text fill="#ff8585" layoutX="57.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose department" textAlignment="CENTER" wrappingWidth="166.3212890625">
+               <font>
+                  <Font name="Century Gothic" size="15.0" />
+               </font>
+            </Text>
+            <Text fill="#ff8585" layoutX="81.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose facility">
+               <font>
+                  <Font name="Century Gothic" size="15.0" />
+               </font>
+            </Text>
+            <Text fx:id="makeReservationMessage" fill="#ff8585" layoutX="288.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+            </Text>
+            <Text fill="#ff8585" layoutX="86.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose date" textAlignment="CENTER">
+               <font>
+                  <Font name="Century Gothic" size="15.0" />
+               </font>
+            </Text>
+            <Text fill="#ff8585" layoutX="88.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose hour" textAlignment="CENTER">
+               <font>
+                  <Font name="Century Gothic" size="15.0" />
+               </font>
+            </Text>
+            <Button fx:id="backButton" layoutX="90.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="29.0" prefWidth="100.0" style="-fx-background-color: #ff8585;" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="makeReservationButton" layoutX="343.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleMakeReservation" style="-fx-background-color: #ff8585;" text="Make reservation" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="15.0" />
+               </font>
+            </Button>
+            <ChoiceBox fx:id="department" layoutX="315.0" layoutY="28.0" prefHeight="26.0" prefWidth="175.0" style="-fx-background-color: #ff8585;" />
+            <ChoiceBox fx:id="facility" layoutX="315.0" layoutY="73.0" prefHeight="26.0" prefWidth="175.0" style="-fx-background-color: #ff8585;" />
+            <DatePicker fx:id="date" layoutX="315.0" layoutY="118.0" prefHeight="26.0" prefWidth="175.0" style="-fx-background-color: #ff8585;" />
+            <ChoiceBox fx:id="hour" layoutX="315.0" layoutY="165.0" prefHeight="26.0" prefWidth="175.0" style="-fx-background-color: #ff8585;" />
+         </children></AnchorPane>
+  </items>
+</SplitPane>
