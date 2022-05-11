@@ -1,6 +1,8 @@
 package org.loose.fis.bsa.services;
 import static org.loose.fis.bsa.services.FileSystemService.getPathToFile;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.bsa.exceptions.*;
@@ -76,15 +78,15 @@ public class UserService {
 
 
 
-    public static void addReservation(String username, String department, String date, String hour) throws EmptyDateFieldException, EmptyDepartmentFieldException, EmptyHourFieldException, MakingReservationException, NotFreeWindowException {
-        checkEmptyFieldForReservation(username, department, date, hour);
+    public static void addReservation(String username, String departmentfacilty, String date, String hour, int price) throws EmptyDateFieldException, EmptyDepartmentFieldException, EmptyHourFieldException, MakingReservationException, NotFreeWindowException {
+        checkEmptyFieldForReservation(username, departmentfacilty, date, hour);
         //checkFreeWindow(department, date, hour);
         //checkFreeWindowForUser(username, department, date, hour);
-        reservationRepository.insert(new Reservation(username, department, date, hour));
+        reservationRepository.insert(new Reservation(username, departmentfacilty, date, hour, price));
     }
 
-    public static void checkEmptyFieldForReservation(String username, String department, String date, String hour) throws EmptyDateFieldException, EmptyDepartmentFieldException, EmptyHourFieldException {
-        if(department == "")
+    public static void checkEmptyFieldForReservation(String username, String departmentfacility, String date, String hour) throws EmptyDateFieldException, EmptyDepartmentFieldException, EmptyHourFieldException {
+        if(departmentfacility == "")
             throw new EmptyDepartmentFieldException();
         else if(date == "")
             throw new EmptyDateFieldException();
@@ -93,12 +95,12 @@ public class UserService {
 
     }
 
-    public static void checkFreeWindow(String department, String date, String hour) throws MakingReservationException {
+    public static void checkFreeWindow(String departmentfacility, String date, String hour) throws MakingReservationException {
         int ok = 0;
 
         for(Reservation reservation : reservationRepository.find())
         {
-            if(department.equals(reservation.getDepartment()))
+            if(departmentfacility.equals(reservation.getDepartmentfacility()))
                 if(date.equals(reservation.getDate()) && hour.equals(reservation.getHour()))
                     ok = 1;
         }
@@ -107,7 +109,7 @@ public class UserService {
 
     }
 
-    public static void checkFreeWindowForUser(String username, String department, String date, String hour) throws NotFreeWindowException {
+    public static void checkFreeWindowForUser(String username, String departmentfacility, String date, String hour) throws NotFreeWindowException {
 
         int ok = 0;
 
@@ -120,6 +122,16 @@ public class UserService {
         if(ok == 1)
             throw new NotFreeWindowException();
     }
+
+    public static void creatingList() {
+        for (Reservation reservation : reservationRepository.find()) {
+            String[] parts = reservation.getDepartmentfacility().split(" - ");
+            reservation.setDepartment(parts[0]);
+            reservation.setFacility(parts[1]);
+            new Reservation(reservation.getUsername(), reservation.getDepartmentfacility(), reservation.getDate(), reservation.getHour(), reservation.getPrice());
+        }
+    }
+
 
 
     private static String encodePassword(String salt, String password) {
