@@ -11,16 +11,11 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.loose.fis.bsa.exceptions.EmptyDateFieldException;
-import org.loose.fis.bsa.exceptions.EmptyDepartmentFieldException;
-import org.loose.fis.bsa.exceptions.EmptyFacilityFieldException;
-import org.loose.fis.bsa.exceptions.EmptyHourFieldException;
+import org.loose.fis.bsa.exceptions.*;
 import org.loose.fis.bsa.model.LoggedUser;
-import org.loose.fis.bsa.services.ReservationService;
 import org.loose.fis.bsa.services.UserService;
 
 import java.io.IOException;
-import java.util.Objects;
 
 
 public class MakeReservationController  {
@@ -28,8 +23,6 @@ public class MakeReservationController  {
     ObservableList list_departments = FXCollections.observableArrayList();
 
     ObservableList list_hours = FXCollections.observableArrayList();
-
-    ObservableList list_facilities = FXCollections.observableArrayList();
 
     @FXML
     private Text makeReservationMessage;
@@ -42,8 +35,6 @@ public class MakeReservationController  {
 
     @FXML
     private ChoiceBox<String> department;
-
-    private String selectedDepartment;
 
     @FXML
     private ChoiceBox<String> hour;
@@ -135,7 +126,7 @@ public class MakeReservationController  {
     }
 
 
-    public void handleMakeReservation() throws EmptyDepartmentFieldException, EmptyDateFieldException, EmptyHourFieldException {
+    public void handleMakeReservation() throws EmptyDepartmentFieldException, EmptyDateFieldException, EmptyHourFieldException, MakingReservationException {
         try {
             UserService.addReservation(LoggedUser.getLoggedUser(), (String) department.getValue(), date.getText(), (String) hour.getValue());
             makeReservationMessage.setText("Your reservation was successful!");
@@ -146,6 +137,10 @@ public class MakeReservationController  {
             makeReservationMessage.setText(e.getMessage());
         } catch (EmptyHourFieldException e) {
             makeReservationMessage.setText(e.getMessage());
+        } catch (MakingReservationException e) {
+            makeReservationMessage.setText(e.getMessage());
+        } catch (NotFreeWindowException e) {
+            throw new RuntimeException(e);
         }
     }
 

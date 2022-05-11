@@ -4,6 +4,7 @@ import static org.loose.fis.bsa.services.FileSystemService.getPathToFile;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.bsa.exceptions.*;
+import org.loose.fis.bsa.model.LoggedUser;
 import org.loose.fis.bsa.model.Reservation;
 import org.loose.fis.bsa.model.User;
 
@@ -30,7 +31,7 @@ public class UserService {
                 .openOrCreate("test", "test");
 
         userRepository = database.getRepository(User.class);
-        reservationForUserRepository = database.getRepository(Reservation.class);
+        //reservationForUserRepository = database.getRepository(Reservation.class);
         reservationRepository = database.getRepository(Reservation.class);
 
     }
@@ -75,8 +76,10 @@ public class UserService {
 
 
 
-    public static void addReservation(String username, String department, String date, String hour) throws EmptyDateFieldException, EmptyDepartmentFieldException, EmptyHourFieldException {
+    public static void addReservation(String username, String department, String date, String hour) throws EmptyDateFieldException, EmptyDepartmentFieldException, EmptyHourFieldException, MakingReservationException, NotFreeWindowException {
         checkEmptyFieldForReservation(username, department, date, hour);
+        //checkFreeWindow(department, date, hour);
+        //checkFreeWindowForUser(username, department, date, hour);
         reservationRepository.insert(new Reservation(username, department, date, hour));
     }
 
@@ -87,59 +90,37 @@ public class UserService {
             throw new EmptyDateFieldException();
         else if(hour == "")
             throw new EmptyHourFieldException();
-    }
-
-
-    /*
-    public static void login() throws UsernameDoesNotExistException, WrongRoleException, WrongPasswordException {
-
-        for(User user : userRepository.find())
-            {
-                checkUserDoesNotExist(user);
-                checkPassword(user);
-                checkRole(user);
-            }
 
     }
 
-
-    private static void checkUserDoesNotExist(User user) throws UsernameDoesNotExistException {
+    public static void checkFreeWindow(String department, String date, String hour) throws MakingReservationException {
         int ok = 0;
-        if(Objects.equals(LoggedUser.getLoggedUser(), user.getUsername()))
-            ok = 1;
 
-        if(ok==0) throw new UsernameDoesNotExistException(LoggedUser.getLoggedUser());
+        for(Reservation reservation : reservationRepository.find())
+        {
+            if(department.equals(reservation.getDepartment()))
+                if(date.equals(reservation.getDate()) && hour.equals(reservation.getHour()))
+                    ok = 1;
+        }
+        if(ok == 1)
+            throw new MakingReservationException();
+
     }
 
-    private static void checkPassword(User user) throws WrongPasswordException {
-        int ok = 0;
-        if(Objects.equals(LoggedUser.getLoggedUser(), user.getUsername())){
+    public static void checkFreeWindowForUser(String username, String department, String date, String hour) throws NotFreeWindowException {
 
-            if(Objects.equals(LoggedUser.getLoggedPassw(), user.getPassword())) {
+        int ok = 0;
+
+        for(Reservation reservation : reservationRepository.find()) {
+            if(username.equals(reservation.getUsername())) {
+                if(date.equals(reservation.getDate()) && hour.equals(reservation.getHour()))
                     ok = 1;
             }
-
         }
-
-        if(ok == 0) throw new WrongPasswordException();
+        if(ok == 1)
+            throw new NotFreeWindowException();
     }
 
-    private static void checkRole(User user) throws WrongRoleException {
-        int ok = 0;
-
-        if(Objects.equals(LoggedUser.getLoggedUser(), user.getUsername())) {
-            if(Objects.equals(LoggedUser.getLoggedPassw(), user.getPassword())){
-                if(Objects.equals(LoggedUser.getLoggedRole(), user.getRole())) {
-                    ok = 1;
-
-                }
-            }
-        }
-
-        if(ok == 0) throw new WrongRoleException();
-    }
-
-    */
 
     private static String encodePassword(String salt, String password) {
         MessageDigest md = getMessageDigest();
@@ -161,20 +142,5 @@ public class UserService {
         }
         return md;
     }
-
-    /*
-    public static void addDepartmentToUser(String username, String department){
-        for(User user : userRepository.find()) {
-           if (Objects.equals(user.getUsername(), username)) {
-                user.setDepartment(department);
-                userRepository.update(user);
-            }
-        }
-    }
-
-     */
-
-
-
 
 }
