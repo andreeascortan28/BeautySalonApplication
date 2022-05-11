@@ -25,24 +25,24 @@
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #ffffff;">
          <children>
-            <Button fx:id="makeReservationButton" layoutX="150.0" layoutY="42.0" mnemonicParsing="false" onAction="#handleMakeReservation" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #ff8585;" text="Make reservation" textAlignment="JUSTIFY" textFill="WHITE">
+            <Button fx:id="makeReservationButton" layoutX="149.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleMakeReservation" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #ff8585;" text="Make reservation" textAlignment="JUSTIFY" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="viewFacilitiesButton" layoutX="149.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleViewFacilities" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #ff8585;" text="View facilities" textAlignment="JUSTIFY" textFill="WHITE">
+            <Button fx:id="viewReservationButton" layoutX="149.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleViewReservations" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #ff8585;" text="View reservations" textAlignment="JUSTIFY" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="viewReservationButton" layoutX="149.0" layoutY="163.0" mnemonicParsing="false" onAction="#handleViewReservations" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #ff8585;" text="View reservations" textAlignment="JUSTIFY" textFill="WHITE">
-               <font>
-                  <Font name="Century Gothic" size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="signOutButton" layoutX="269.0" layoutY="245.0" mnemonicParsing="false" onAction="#handleSignOut" style="-fx-background-color: #ff8585;" text="Sign out" textFill="WHITE">
+            <Button fx:id="signOutButton" layoutX="260.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleSignOut" style="-fx-background-color: #ff8585;" text="Sign out" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="150.0" layoutY="47.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: ff8585;" text="View Facilities" textFill="#fffefe">
+               <font>
+                  <Font size="15.0" />
                </font>
             </Button>
          </children></AnchorPane>

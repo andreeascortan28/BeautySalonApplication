@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<SplitPane dividerPositions="0.2540160642570281" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="99.0" prefWidth="599.0" style="-fx-background-color: ff8585;">
+         <children>
+            <ImageView fitHeight="98.0" fitWidth="136.0" layoutX="114.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/beautysalonpatrat.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="263.0" layoutY="34.0" text="Facial Treatments" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic Bold" size="23.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <VBox layoutX="58.0" layoutY="19.0" prefHeight="255.0" prefWidth="484.0">
+               <children>
+                  <ImageView fitHeight="200.0" fitWidth="483.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/FacialTreatments.png" />
+                     </image>
+                  </ImageView>
+               </children></VBox>
+         </children></AnchorPane>
+  </items>
+</SplitPane>

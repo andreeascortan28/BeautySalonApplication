@@ -78,5 +78,15 @@ public class UserService {
         return md;
     }
 
+    public static void addOption(String username, String option) {
+        for (User user : userRepository.find()) {
+            if (Objects.equals(username, user.getUsername())) {
+                user.setOption(option);
+                userRepository.update(user);
+            }
+
+        }
+    }
+
 
 }

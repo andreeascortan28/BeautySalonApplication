@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -54,7 +55,6 @@
                         <Font name="Century Gothic" size="12.0" />
                     </font>
                 </Label>
-                <TextField fx:id="passwordField" layoutX="86.0" layoutY="143.0" prefHeight="26.0" prefWidth="173.0" promptText="Password" />
                 <Label layoutX="26.0" layoutY="185.0" text="Phone" textFill="#ff8585">
                     <font>
                         <Font name="Century Gothic" size="12.0" />
@@ -74,6 +74,7 @@
                 </Label>
                 <TextField fx:id="departmentField" layoutX="86.0" layoutY="255.0" prefHeight="26.0" prefWidth="173.0" promptText="Department" />
             <Label fx:id="registrationMessage" layoutX="61.0" layoutY="300.0" prefHeight="18.0" prefWidth="190.0" />
+            <PasswordField fx:id="passwordField" layoutX="86.0" layoutY="142.0" prefHeight="26.0" prefWidth="173.0" promptText="Password" />
             </children>
         </AnchorPane>
     </right>

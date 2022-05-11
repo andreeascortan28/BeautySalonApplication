@@ -21,7 +21,7 @@ public class RegistrationController {
     @FXML
     private Label registrationMessage;
     @FXML
-    private TextField passwordField;
+    private PasswordField passwordField;
     @FXML
     private TextField usernameField;
     @FXML
