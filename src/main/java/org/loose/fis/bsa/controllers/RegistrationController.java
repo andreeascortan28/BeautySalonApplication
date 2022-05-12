@@ -38,11 +38,19 @@ public class RegistrationController {
     private Button registerButton;
     @FXML
     private ChoiceBox role;
+    @FXML
+    private Button backField;
 
     @FXML
     public void initialize() {
         role.getItems().addAll("Customer", "Employee");
         //role.setValue("");
+    }
+    public void handleInapoiAction() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("login.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) (backField.getScene().getWindow());
+        stage.setScene(new Scene(root,600,400));
     }
 
     @FXML

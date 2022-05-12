@@ -11,7 +11,7 @@ public class NailsController {
     private Button backField;
 
     public void handleInapoiAction() throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("customerPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("viewFacilities.fxml"));
         Parent root = loader.load();
         Stage stage = (Stage) (backField.getScene().getWindow());
         stage.setScene(new Scene(root,600,400));
