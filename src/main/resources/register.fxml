@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -37,8 +38,8 @@
                     </font>
                 </Label>
                 <TextField fx:id="lastNameField" layoutX="86.0" layoutY="72.0" prefHeight="26.0" prefWidth="173.0" promptText="LastName" />
-                <ChoiceBox fx:id="role" layoutX="17.0" layoutY="342.0" prefWidth="150.0" style="-fx-background-color: ff8585;" />
-                <Button fx:id="registerButton" layoutX="211.0" layoutY="343.0" mnemonicParsing="false" onAction="#handleRegisterAction" style="-fx-background-color: ff8585;" text="Register" textFill="#faf7f7">
+                <ChoiceBox fx:id="role" layoutX="78.0" layoutY="261.0" prefHeight="26.0" prefWidth="155.0" style="-fx-background-color: ff8585;" />
+                <Button fx:id="registerButton" layoutX="236.0" layoutY="331.0" mnemonicParsing="false" onAction="#handleRegisterAction" style="-fx-background-color: ff8585;" text="Register" textFill="#faf7f7">
                     <font>
                         <Font name="Century Gothic" size="12.0" />
                     </font>
@@ -54,7 +55,6 @@
                         <Font name="Century Gothic" size="12.0" />
                     </font>
                 </Label>
-                <TextField fx:id="passwordField" layoutX="86.0" layoutY="143.0" prefHeight="26.0" prefWidth="173.0" promptText="Password" />
                 <Label layoutX="26.0" layoutY="185.0" text="Phone" textFill="#ff8585">
                     <font>
                         <Font name="Century Gothic" size="12.0" />
@@ -67,13 +67,13 @@
                     </font>
                 </Label>
                 <TextField fx:id="emailField" layoutX="86.0" layoutY="217.0" prefHeight="26.0" prefWidth="173.0" promptText="E-mail" />
-                <Label layoutX="9.0" layoutY="260.0" text="Department" textFill="#ff8585">
-                    <font>
-                        <Font name="Century Gothic" size="12.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="departmentField" layoutX="86.0" layoutY="255.0" prefHeight="26.0" prefWidth="173.0" promptText="Department" />
-            <Label fx:id="registrationMessage" layoutX="61.0" layoutY="300.0" prefHeight="18.0" prefWidth="190.0" />
+            <Label fx:id="registrationMessage" layoutX="60.0" layoutY="302.0" prefHeight="18.0" prefWidth="190.0" />
+            <PasswordField fx:id="passwordField" layoutX="86.0" layoutY="142.0" prefHeight="26.0" prefWidth="173.0" promptText="Password" />
+            <Button fx:id="backField" layoutX="18.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleInapoiAction" style="-fx-background-color: ff8585;" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="13.0" />
+               </font>
+            </Button>
             </children>
         </AnchorPane>
     </right>

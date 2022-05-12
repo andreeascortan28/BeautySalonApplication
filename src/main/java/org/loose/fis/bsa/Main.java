@@ -16,9 +16,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primarystage) throws IOException {
-
         UserService.initDatabase();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("viewReservations.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
         primarystage.setScene(new Scene(root, 600,400));
         primarystage.setTitle("Beauty Salon App");
         primarystage.show();

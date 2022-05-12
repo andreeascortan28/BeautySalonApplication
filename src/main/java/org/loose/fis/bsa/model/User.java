@@ -1,4 +1,5 @@
 package org.loose.fis.bsa.model;
+import org.dizitart.no2.objects.Id;
 
 import org.dizitart.no2.objects.Id;
 
@@ -8,6 +9,7 @@ public class User {
     private String username;
     private String password;
     private String role;
+    private String option;
 
     public User() {
     }
@@ -52,6 +54,9 @@ public class User {
         if (!username.equals(user.username)) return false;
         if (!password.equals(user.password)) return false;
         return role.equals(user.role);
+    }
+    public void setOption(String option) {
+        this.option = option;
     }
 
     @Override

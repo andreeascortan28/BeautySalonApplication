@@ -38,8 +38,6 @@ public class UserService {
 
     }
 
-
-
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
         userRepository.insert(new User(username, encodePassword(username, password), role));
@@ -93,6 +91,11 @@ public class UserService {
         else if(hour == "")
             throw new EmptyHourFieldException();
 
+    }
+
+    public static void checkIfAllFieldsAreCompleted(String password, String username, String firstName, String lastName, String phone, String email) throws AllFieldsAreMandatory{
+        if(password == "" || username == "" || firstName == "" || lastName == "" || phone == "" || email == "" )
+            throw new AllFieldsAreMandatory();
     }
 
     public static void checkFreeWindow(String departmentfacility, String date, String hour) throws MakingReservationException {
@@ -153,6 +156,17 @@ public class UserService {
             throw new IllegalStateException("SHA-512 does not exist!");
         }
         return md;
+    }
+
+
+    public static void addOption(String username, String option) {
+        for (User user : userRepository.find()) {
+            if (Objects.equals(username, user.getUsername())) {
+                user.setOption(option);
+                userRepository.update(user);
+            }
+
+        }
     }
 
 }
