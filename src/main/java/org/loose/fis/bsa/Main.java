@@ -18,19 +18,16 @@ public class Main extends Application {
     public void start(Stage primarystage) throws IOException {
         UserService.initDatabase();
 
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
+
+       // Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
+
+        UserService.initDatabase();
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("viewReservations.fxml"));
+
         primarystage.setScene(new Scene(root, 600,400));
         primarystage.setTitle("Beauty Salon App");
         primarystage.show();
     }
-
-
-    private void initDirectory() {
-        Path applicationHomePath = FileSystemService.APPLICATION_HOME_PATH;
-        if (!Files.exists(applicationHomePath))
-            applicationHomePath.toFile().mkdirs();
-    }
-
 
     public static void main(String[] args) {
         launch(args);

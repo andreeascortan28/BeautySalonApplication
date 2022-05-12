@@ -26,7 +26,7 @@ public class HomePageCustomerController {
 
     @FXML
     public void handleMakeReservation() throws IOException {
-        Parent rootMakeReservation = FXMLLoader.load(getClass().getClassLoader().getResource("makeRegistration.fxml"));
+        Parent rootMakeReservation = FXMLLoader.load(getClass().getClassLoader().getResource("makeReservation.fxml"));
         Stage stage = (Stage) (makeReservationButton.getScene().getWindow());
         stage.setTitle("Make Reservation");
         stage.setScene(new Scene(rootMakeReservation, 600, 400));
