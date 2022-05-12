@@ -5,16 +5,22 @@ public class Reservation {
     private String username;
     private String hour;
     private String date;
+
+    private String departmentfacility;
+
     private String department;
+
     private String facility;
 
+    private int price;
 
-    public Reservation(String username, String department, String facility, String date, String hour) {
+
+    public Reservation(String username, String departmentfacility, String date, String hour, int price) {
         this.username = username;
-        this.department = department;
-        this.facility = facility;
+        this.departmentfacility = departmentfacility;
         this.date = date;
         this.hour = hour;
+        this.price = price;
     }
 
     public String getUsername() {
@@ -49,6 +55,14 @@ public class Reservation {
         this.department = department;
     }
 
+    public String getDepartmentfacility() {
+        return departmentfacility;
+    }
+
+    public void setDepartmentfacility(String departmentfacility) {
+        this.departmentfacility = departmentfacility;
+    }
+
     public String getFacility() {
         return facility;
     }
@@ -56,4 +70,20 @@ public class Reservation {
     public void setFacility(String facility) {
         this.facility = facility;
     }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void splitDepartAndFacility(String departmentfacility)
+    {
+        String[] parts = departmentfacility.split(" - ");
+        this.department = parts[0];
+        this.facility = parts[1];
+    }
+
 }
