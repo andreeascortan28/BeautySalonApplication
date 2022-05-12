@@ -15,6 +15,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
+
 // java -jar --module-path F:\javafx-sdk-18.0.1\lib --add-modules javafx.controls,javafx.fxml F:\nitrite-explorer-3.4.3.jar
 public class UserService {
 
@@ -72,6 +73,10 @@ public class UserService {
 
     }
 
+    public static void checkIfAllFieldsAreCompleted(String password, String username, String firstName, String lastName, String phone, String email) throws AllFieldsAreMandatory{
+        if(password == "" || username == "" || firstName == "" || lastName == "" || phone == "" || email == "" )
+            throw new AllFieldsAreMandatory();
+    }
 
     private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException {
         for (User user : userRepository.find()) {
@@ -126,8 +131,6 @@ public class UserService {
         if(ok == 1)
             throw new NotFreeWindowException();
     }
-
-
 
 
     private static String encodePassword(String salt, String password) {
