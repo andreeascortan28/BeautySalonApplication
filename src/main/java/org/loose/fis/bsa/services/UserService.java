@@ -39,6 +39,10 @@ public class UserService {
     }
 
 
+    public static ObjectRepository<Reservation> getReservationRepository() {
+        return reservationRepository;
+    }
+
 
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
@@ -123,14 +127,6 @@ public class UserService {
             throw new NotFreeWindowException();
     }
 
-    public static void creatingList() {
-        for (Reservation reservation : reservationRepository.find()) {
-            String[] parts = reservation.getDepartmentfacility().split(" - ");
-            reservation.setDepartment(parts[0]);
-            reservation.setFacility(parts[1]);
-            new Reservation(reservation.getUsername(), reservation.getDepartmentfacility(), reservation.getDate(), reservation.getHour(), reservation.getPrice());
-        }
-    }
 
 
 
