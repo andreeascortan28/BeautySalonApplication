@@ -38,8 +38,6 @@ public class UserService {
 
     }
 
-
-
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
         userRepository.insert(new User(username, encodePassword(username, password), role));
@@ -93,6 +91,11 @@ public class UserService {
         else if(hour == "")
             throw new EmptyHourFieldException();
 
+    }
+
+    public static void checkIfAllFieldsAreCompleted(String password, String username, String firstName, String lastName, String phone, String email) throws AllFieldsAreMandatory{
+        if(password == "" || username == "" || firstName == "" || lastName == "" || phone == "" || email == "" )
+            throw new AllFieldsAreMandatory();
     }
 
     public static void checkFreeWindow(String departmentfacility, String date, String hour) throws MakingReservationException {
