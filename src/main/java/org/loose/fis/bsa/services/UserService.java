@@ -23,7 +23,7 @@ public class UserService {
 
     private static ObjectRepository<Reservation> reservationForUserRepository;
 
-    private static ObjectRepository<Reservation> reservationRepository;
+    public static ObjectRepository<Reservation> reservationRepository;
 
     private static Nitrite database;
 
@@ -88,13 +88,13 @@ public class UserService {
 
 
     public static void addReservation(String username, String departmentfacilty, String date, String hour, int price) throws EmptyDateFieldException, EmptyDepartmentFieldException, EmptyHourFieldException, MakingReservationException, NotFreeWindowException {
-        checkEmptyFieldForReservation(username, departmentfacilty, date, hour);
+        checkEmptyFieldForReservation(departmentfacilty, date, hour);
         //checkFreeWindow(department, date, hour);
         //checkFreeWindowForUser(username, department, date, hour);
         reservationRepository.insert(new Reservation(username, departmentfacilty, date, hour, price));
     }
 
-    public static void checkEmptyFieldForReservation(String username, String departmentfacility, String date, String hour) throws EmptyDateFieldException, EmptyDepartmentFieldException, EmptyHourFieldException {
+    public static void checkEmptyFieldForReservation(String departmentfacility, String date, String hour) throws EmptyDateFieldException, EmptyDepartmentFieldException, EmptyHourFieldException {
         if(departmentfacility == "")
             throw new EmptyDepartmentFieldException();
         else if(date == "")

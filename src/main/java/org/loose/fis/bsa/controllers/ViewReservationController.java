@@ -24,30 +24,31 @@ public class ViewReservationController {
     private Button backButton;
 
     @FXML
-    private TableColumn<Reservation, String> date;
+    private TableColumn<Reservation, String> date_col;
 
     @FXML
-    private TableColumn<Reservation, String> departmentfacility;
+    private TableColumn<Reservation, String> departmentfacility_col;
 
     @FXML
-    private TableColumn<Reservation, String> hour;
+    private TableColumn<Reservation, String> hour_col;
 
     @FXML
     private TableView<Reservation> table;
 
     @FXML
-    private TableColumn<Reservation, String> username;
+    private TableColumn<Reservation, String> username_col;
     @FXML
-    private TableColumn<Reservation, Integer> price;
+    private TableColumn<Reservation, Integer> price_col;
 
     private static ObjectRepository<Reservation> reservationRepository = UserService.getReservationRepository();
 
+    @FXML
     public void loadList() {
-        username.setCellValueFactory(new PropertyValueFactory<Reservation, String>("username"));
-        departmentfacility.setCellValueFactory(new PropertyValueFactory<Reservation, String>("departmentfacility"));
-        date.setCellValueFactory(new PropertyValueFactory<Reservation, String>("date"));
-        hour.setCellValueFactory(new PropertyValueFactory<Reservation, String>("hour"));
-        price.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("price"));
+        username_col.setCellValueFactory(new PropertyValueFactory<Reservation, String>("username"));
+        departmentfacility_col.setCellValueFactory(new PropertyValueFactory<Reservation, String>("departmentfacility"));
+        date_col.setCellValueFactory(new PropertyValueFactory<Reservation, String>("date"));
+        hour_col.setCellValueFactory(new PropertyValueFactory<Reservation, String>("hour"));
+        price_col.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("price"));
 
         ObservableList<Reservation> reservationsList = FXCollections.observableArrayList();
 
@@ -58,10 +59,13 @@ public class ViewReservationController {
         table.setItems(reservationsList);
     }
 
+
     @FXML
     public void initialize() {
         loadList();
     }
+
+
 
     @FXML
     public void handleBackAction() throws IOException {
