@@ -1,12 +1,10 @@
 package org.loose.fis.bsa.controllers;
 
-import com.fasterxml.jackson.databind.ser.impl.ReadOnlyClassToSerializerMap;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,17 +12,20 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.dizitart.no2.objects.ObjectRepository;
+import org.loose.fis.bsa.model.LoggedUser;
 import org.loose.fis.bsa.model.Reservation;
 import org.loose.fis.bsa.services.UserService;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class ViewReservationsController implements Initializable {
+public class ViewScheduleController {
 
     @FXML
     private Button backButton;
+
+    @FXML
+    private TableColumn<Reservation, String> clientUsername;
 
     @FXML
     private TableColumn<Reservation, String> date;
@@ -41,11 +42,10 @@ public class ViewReservationsController implements Initializable {
     @FXML
     private TableView<Reservation> table;
 
-    @FXML
-    private TableColumn<Reservation, String> username;
+    private static ObjectRepository<Reservation> reservationRepository = UserService.getReservationRepository();
 
     @FXML
-    public void handleBackAction() throws IOException {
+    public void handleBackButton() throws IOException {
         Parent rootSignOut = FXMLLoader.load(getClass().getClassLoader().getResource("customerPage.fxml"));
         Stage stage = (Stage) (backButton.getScene().getWindow());
         stage.setTitle("Customer page");
@@ -53,21 +53,28 @@ public class ViewReservationsController implements Initializable {
         stage.show();
     }
 
-    ObservableList<Reservation> list = FXCollections.observableArrayList(
-            new Reservation("D", "a", "d", "a", 25)
+    @FXML
+    public void initialize() {
+        loadList();
 
-    );
+    }
 
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        username.setCellValueFactory(new PropertyValueFactory<Reservation, String>("username"));
+    @FXML
+    public void loadList() {
+        clientUsername.setCellValueFactory(new PropertyValueFactory<Reservation, String>("username"));
+        departmentfacility.setCellValueFactory(new PropertyValueFactory<Reservation, String>("departmentfacility"));
         date.setCellValueFactory(new PropertyValueFactory<Reservation, String>("date"));
         hour.setCellValueFactory(new PropertyValueFactory<Reservation, String>("hour"));
-        departmentfacility.setCellValueFactory(new PropertyValueFactory<Reservation, String>("departmentfacility"));
         price.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("price"));
 
-        table.setItems(list);
+        ObservableList<Reservation> reservationsList = FXCollections.observableArrayList();
+
+        for(Reservation reservation : reservationRepository.find()) {
+                reservationsList.add(reservation);
+        }
+        table.setItems(reservationsList);
     }
+
+
+
 }

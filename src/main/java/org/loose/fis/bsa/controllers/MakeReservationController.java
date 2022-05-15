@@ -13,9 +13,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.loose.fis.bsa.exceptions.*;
 import org.loose.fis.bsa.model.LoggedUser;
+import org.loose.fis.bsa.model.User;
 import org.loose.fis.bsa.services.UserService;
 
 import java.io.IOException;
+
+import static org.loose.fis.bsa.services.UserService.*;
 
 
 public class MakeReservationController  {
@@ -55,7 +58,7 @@ public class MakeReservationController  {
     }
 
     private void loadDepartments() {
-        System.out.println("am ajuns in load dep");
+        //System.out.println("am ajuns in load dep");
         list_departments.remove(list_departments);
         list_departments.addAll("Hair salon - hair cutting", "Hair salon - Colouring", "Hair salon - Styling",
                 "Make-up - Everyday make-up", "Make-up - Wedding make-up",
@@ -119,7 +122,7 @@ public class MakeReservationController  {
 
 
     @FXML
-    public void initialize() throws InterruptedException {
+    public void initialize() {
         loadDepartments();
         //selectedDepartment = (String) department.getValue();
         //loadFacilities(selectedDepartment);
@@ -128,9 +131,10 @@ public class MakeReservationController  {
     }
 
 
-    public void handleMakeReservation() throws EmptyDepartmentFieldException, EmptyDateFieldException, EmptyHourFieldException, MakingReservationException {
+    public void handleMakeReservation() throws EmptyDepartmentFieldException, EmptyDateFieldException, EmptyHourFieldException, MakingReservationException, NotFreeWindowException, IOException {
         try {
-            UserService.addReservation(LoggedUser.getLoggedUser(), (String) departmentfacility.getValue(), date.getText(), (String) hour.getValue(), setPrice((String) departmentfacility.getValue()));
+            UserService.checkEmptyFieldForReservation(departmentfacility, date.getText(), hour);
+            UserService.addReservation(LoggedUser.getLoggedUser(), (String) departmentfacility.getValue(), date.getText(), (String) hour.getValue(), setPrice(departmentfacility));
             makeReservationMessage.setText("Your reservation was successful!");
 
         } catch (EmptyDepartmentFieldException e) {
@@ -139,79 +143,81 @@ public class MakeReservationController  {
             makeReservationMessage.setText(e.getMessage());
         } catch (EmptyHourFieldException e) {
             makeReservationMessage.setText(e.getMessage());
-        } catch (MakingReservationException e) {
+        }  catch (MakingReservationException e) {
             makeReservationMessage.setText(e.getMessage());
         } catch (NotFreeWindowException e) {
-            throw new RuntimeException(e);
+            makeReservationMessage.setText(e.getMessage());
         }
+
     }
 
-    public int setPrice(String departmentfacility) {
+    public int setPrice(ChoiceBox departmentfacility) {
 
-        String[] parts = departmentfacility.split(" - ");
-        String department = parts[0];
-        String facility = parts[1];
+        if (departmentfacility.getSelectionModel().isEmpty())
+            return 0;
+        else
+        {
+            String[] parts = ((String) departmentfacility.getValue()).split(" - ");
+            String department = parts[0];
+            String facility = parts[1];
 
-        if(department.equals("Hair Salon")) {
-            if(facility.equals("hair cutting"))
-                price = 80;
-            else if(facility.equals("Colouring"))
-                price = 220;
-            else if(facility.equals("Styling"))
-                price = 150;
-        }
-        else if(department.equals("Make-up")) {
-            if(facility.equals("Everyday make-up"))
-                price = 50;
-            else if(facility.equals("Wedding make-up"))
-                price = 100;
+            if (department.equals("Hair Salon")) {
+                if (facility.equals("hair cutting"))
+                    price = 80;
+                else if (facility.equals("Colouring"))
+                    price = 220;
+                else if (facility.equals("Styling"))
+                    price = 150;
+            } else if (department.equals("Make-up")) {
+                if (facility.equals("Everyday make-up"))
+                    price = 50;
+                else if (facility.equals("Wedding make-up"))
+                    price = 100;
 
-        }
-        else if(department.equals("Hair removal")) {
-            if(facility.equals("Face"))
-                price = 30;
-            else if(facility.equals("Legs"))
-                price = 100;
-            else if(facility.equals("Back and chest"))
-                price = 50;
-            else if(facility.equals("Underarms"))
-                price = 20;
-            else if(facility.equals("Arms"))
-                price = 50;
-        }
-        else if(department.equals("Nails")) {
-            if(facility.equals("Manicure"))
-                price = 80;
-            else if(facility.equals("Pedicure"))
-                price = 50;
-            else if(facility.equals("Mani-Pedi"))
-                price = 100;
+            } else if (department.equals("Hair removal")) {
+                if (facility.equals("Face"))
+                    price = 30;
+                else if (facility.equals("Legs"))
+                    price = 100;
+                else if (facility.equals("Back and chest"))
+                    price = 50;
+                else if (facility.equals("Underarms"))
+                    price = 20;
+                else if (facility.equals("Arms"))
+                    price = 50;
+            } else if (department.equals("Nails")) {
+                if (facility.equals("Manicure"))
+                    price = 80;
+                else if (facility.equals("Pedicure"))
+                    price = 50;
+                else if (facility.equals("Mani-Pedi"))
+                    price = 100;
+            } else if (department.equals("Facial treatments")) {
+                if (facility.equals("Classic facial"))
+                    price = 100;
+                else if (facility.equals("Acne reduction facial"))
+                    price = 150;
+                else if (facility.equals("LED light therapy"))
+                    price = 300;
+                else if (facility.equals("Acupuncture facial"))
+                    price = 250;
+            } else if (department.equals("Massage")) {
+                if (facility.equals("Classic massage"))
+                    price = 100;
+                else if (facility.equals("Deep tissue massage"))
+                    price = 150;
+                else if (facility.equals("Hot stone massage"))
+                    price = 200;
+                else if (facility.equals("Sports massage"))
+                    price = 150;
+                else if (facility.equals("Thai massage"))
+                    price = 300;
+            }
+            return price;
         }
 
-        else if(department.equals("Facial treatments")) {
-            if(facility.equals("Classic facial"))
-                price = 100;
-            else if(facility.equals("Acne reduction facial"))
-                price = 150;
-            else if(facility.equals("LED light therapy"))
-                price = 300;
-            else if(facility.equals("Acupuncture facial"))
-                price = 250;
-        }
-
-        else if(department.equals("Massage")) {
-            if(facility.equals("Classic massage"))
-                price = 100;
-            else if(facility.equals("Deep tissue massage"))
-                price = 150;
-            else if(facility.equals("Hot stone massage"))
-                price = 200;
-            else if(facility.equals("Sports massage"))
-                price = 150;
-            else if(facility.equals("Thai massage"))
-                price = 300;
-        }
-        return price;
     }
+
+
 
 }
