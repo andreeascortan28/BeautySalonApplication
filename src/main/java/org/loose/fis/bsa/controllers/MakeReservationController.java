@@ -12,16 +12,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.loose.fis.bsa.exceptions.*;
+import org.loose.fis.bsa.model.DepartmentFacility;
 import org.loose.fis.bsa.model.LoggedUser;
 import org.loose.fis.bsa.model.User;
 import org.loose.fis.bsa.services.UserService;
-
+import org.dizitart.no2.objects.ObjectRepository;
 import java.io.IOException;
-
-import static org.loose.fis.bsa.services.UserService.*;
+import java.util.Objects;
 
 
 public class MakeReservationController  {
+
+    private static ObjectRepository<DepartmentFacility> departmentFacilityRepository = UserService.getDepartmentFacilityRepository();
 
     ObservableList list_departments = FXCollections.observableArrayList();
 
@@ -151,9 +153,21 @@ public class MakeReservationController  {
 
     }
 
+
     public int setPrice(ChoiceBox departmentfacility) {
 
-        if (departmentfacility.getSelectionModel().isEmpty())
+        System.out.println("am intrat in setprice");
+        int price = 0;
+        String depfac = (String) departmentfacility.getValue();
+        for(DepartmentFacility departmentFacility : departmentFacilityRepository.find())
+        {
+            if(Objects.equals(departmentFacility.getDepartmentfacility(), depfac))
+                price = departmentFacility.getPrice();
+        }
+        return price;
+
+
+        /*if (departmentfacility.getSelectionModel().isEmpty())
             return 0;
         else
         {
@@ -215,6 +229,8 @@ public class MakeReservationController  {
             }
             return price;
         }
+
+         */
 
     }
 
