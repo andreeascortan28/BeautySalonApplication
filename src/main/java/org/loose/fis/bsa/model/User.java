@@ -1,7 +1,6 @@
 package org.loose.fis.bsa.model;
 import org.dizitart.no2.objects.Id;
 
-import org.dizitart.no2.objects.Id;
 
 public class User {
 
@@ -11,8 +10,9 @@ public class User {
     private String role;
     private String option;
 
-    public User() {
-    }
+   public User() {
+
+   }
 
     public User(String username, String password, String role) {
         this.username = username;
