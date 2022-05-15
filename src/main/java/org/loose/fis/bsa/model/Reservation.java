@@ -1,6 +1,9 @@
 package org.loose.fis.bsa.model;
 
+
+
 public class Reservation {
+
 
     private String username;
     private String hour;
@@ -15,6 +18,9 @@ public class Reservation {
 
     private int price;
 
+    public Reservation() {
+
+    }
 
     public Reservation(String username, String departmentfacility, String date, String hour, int price) {
         this.username = username;
@@ -44,16 +50,13 @@ public class Reservation {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
 
-    public String getDepartment() {
-        return department;
-    }
 
     public void setDepartment(String department) {
         this.department = department;
+    }
+    public String getDepartment() {
+        return department;
     }
 
     public String getDepartmentfacility() {
@@ -80,11 +83,6 @@ public class Reservation {
         this.price = price;
     }
 
-    public void splitDepartAndFacility(String departmentfacility)
-    {
-        String[] parts = departmentfacility.split(" - ");
-        this.department = parts[0];
-        this.facility = parts[1];
-    }
+
 
 }
