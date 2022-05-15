@@ -162,7 +162,7 @@ public class MakeReservationController  {
             String facility = parts[1];
 
             if (department.equals("Hair Salon")) {
-                if (facility.equals("hair cutting"))
+                if (facility.equals("Hair cutting"))
                     price = 80;
                 else if (facility.equals("Colouring"))
                     price = 220;

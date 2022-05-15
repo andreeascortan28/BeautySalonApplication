@@ -17,11 +17,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+
 public class Main extends Application {
     @Override
     public void start(Stage primarystage) throws IOException {
 
+
         UserService.initDatabase();
+
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
         primarystage.setScene(new Scene(root, 600,400));
         primarystage.setTitle("Beauty Salon App");
@@ -37,4 +40,6 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+
 }
