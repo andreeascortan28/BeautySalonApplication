@@ -30,7 +30,7 @@
                   <Font name="Century Gothic" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="changePricesButton" layoutX="150.0" layoutY="76.0" mnemonicParsing="false" onAction="#handleChangePrices" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #ff8585;" text="Change prices" textAlignment="JUSTIFY" textFill="WHITE">
+            <Button fx:id="changePricesButton" layoutX="150.0" layoutY="76.0" mnemonicParsing="false" onAction="#handleChangePrices" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #ff8585;" text="Departments" textAlignment="JUSTIFY" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="15.0" />
                </font>

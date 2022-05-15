@@ -54,9 +54,8 @@ public class RegistrationController {
 
     @FXML
     public void handleRegisterAction() throws IOException, UsernameAlreadyExistsException {
-        try {
+        try {UserService.checkIfAllFieldsAreCompleted(passwordField.getText(), usernameField.getText(), firstNameField.getText(), lastNameField.getText(), phoneField.getText(), emailField.getText());
             UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
-            UserService.checkIfAllFieldsAreCompleted(passwordField.getText(), usernameField.getText(), firstNameField.getText(), lastNameField.getText(), phoneField.getText(), emailField.getText());
             registrationMessage.setText("Account created successfully!");
         } catch (UsernameAlreadyExistsException e) {
             registrationMessage.setText(e.getMessage());
