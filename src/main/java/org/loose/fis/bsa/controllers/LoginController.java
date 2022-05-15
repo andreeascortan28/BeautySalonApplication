@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.loose.fis.bsa.exceptions.AllFieldsAreMandatory;
 import org.loose.fis.bsa.exceptions.UsernameDoesNotExistException;
 import org.loose.fis.bsa.exceptions.WrongPasswordException;
 import org.loose.fis.bsa.exceptions.WrongRoleException;
@@ -48,8 +49,9 @@ public class LoginController {
 
 
     @FXML
-    public void handleLoginAction() throws UsernameDoesNotExistException, WrongPasswordException, WrongRoleException, IOException {
+    public void handleLoginAction() throws UsernameDoesNotExistException, WrongPasswordException, WrongRoleException, IOException, AllFieldsAreMandatory {
         try {
+            UserService.checkEmptyFieldForLogin(usernameField.getText(), passwordField.getText(), role);
             //System.out.println("handle login action");
             UserService.checkCredentials(usernameField.getText(), passwordField.getText(), (String) role.getValue());
             loginUserMessage.setText("Login successfully!");
@@ -90,6 +92,8 @@ public class LoginController {
             loginUserMessage.setText(e.getMessage());
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } catch (AllFieldsAreMandatory e) {
+            loginUserMessage.setText(e.getMessage());
         }
 
     }

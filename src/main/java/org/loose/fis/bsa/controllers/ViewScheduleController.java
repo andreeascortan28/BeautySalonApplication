@@ -19,9 +19,6 @@ import org.loose.fis.bsa.services.UserService;
 
 import java.io.IOException;
 
-import static org.loose.fis.bsa.services.UserService.reservationRepository;
-
-
 public class ViewScheduleController {
 
     @FXML
@@ -45,7 +42,7 @@ public class ViewScheduleController {
     @FXML
     private TableView<Reservation> table;
 
-    //private static ObjectRepository<Reservation> reservationRepository = UserService.getReservationRepository();
+    private static ObjectRepository<Reservation> reservationRepository = UserService.getReservationRepository();
 
     @FXML
     public void handleBackButton() throws IOException {
@@ -73,7 +70,6 @@ public class ViewScheduleController {
         ObservableList<Reservation> reservationsList = FXCollections.observableArrayList();
 
         for(Reservation reservation : reservationRepository.find()) {
-            if(LoggedUser.getLoggedUser().equals(reservation.getUsername()))
                 reservationsList.add(reservation);
         }
         table.setItems(reservationsList);
