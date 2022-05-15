@@ -39,9 +39,9 @@ public class HomePageEmployeeController {
 
     @FXML
     public void handleChangePrices() throws IOException {
-        Parent rootEditReservation = FXMLLoader.load(getClass().getClassLoader().getResource("changePrices.fxml"));
+        Parent rootEditReservation = FXMLLoader.load(getClass().getClassLoader().getResource("viewFacilitiesEmployee.fxml"));
         Stage stage = (Stage) (changePricesButton.getScene().getWindow());
-        stage.setTitle("Change Prices");
+        stage.setTitle("Departments");
         stage.setScene(new Scene(rootEditReservation, 600, 400));
         stage.show();
 

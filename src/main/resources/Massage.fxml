@@ -3,11 +3,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.bsa.controllers.MassageController">
    <children>
@@ -29,16 +30,17 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <ImageView fitHeight="213.0" fitWidth="407.0" layoutX="96.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Images/Massage.png" />
-                     </image>
-                  </ImageView>
                   <Button fx:id="backField" layoutX="494.0" layoutY="251.0" mnemonicParsing="false" onAction="#handleInapoiAction" prefHeight="26.0" prefWidth="49.0" style="-fx-background-color: ff8585;" text="Back" textFill="WHITE">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Button>
+                  <TableView fx:id="table" layoutX="57.0" layoutY="14.0" prefHeight="232.0" prefWidth="462.0">
+                    <columns>
+                      <TableColumn fx:id="FacilityColumn" prefWidth="238.4000358581543" text="Facility" />
+                      <TableColumn fx:id="PriceColumn" prefWidth="225.5999755859375" text="Price" />
+                    </columns>
+                  </TableView>
                </children>
             </AnchorPane>
         </items>

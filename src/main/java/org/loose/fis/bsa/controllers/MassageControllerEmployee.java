@@ -1,5 +1,5 @@
 package org.loose.fis.bsa.controllers;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,22 +11,19 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
-import javafx.fxml.Initializable;
-import org.loose.fis.bsa.model.User;
 import org.loose.fis.bsa.model.Edit;
+
+import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.awt.*;
 
-import static javafx.scene.control.cell.TextFieldTableCell.*;
-
-public class FacialTreatmentsController implements Initializable
-{
+public class MassageControllerEmployee implements Initializable {
     @FXML
-    private Button backField;
+    private Button back;
+    @FXML
+    private Button save;
     @FXML
     private TableView<Edit> table;
     @FXML
@@ -35,9 +32,9 @@ public class FacialTreatmentsController implements Initializable
     private TableColumn<Edit,String> PriceColumn;
 
     public void handleInapoiAction() throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("viewFacilities.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("viewFacilitiesEmployee.fxml"));
         Parent root = loader.load();
-        Stage stage = (Stage) (backField.getScene().getWindow());
+        Stage stage = (Stage) (back.getScene().getWindow());
         stage.setScene(new Scene(root,600,400));
     }
 
@@ -45,10 +42,17 @@ public class FacialTreatmentsController implements Initializable
         FacilityColumn.setCellValueFactory(new PropertyValueFactory<>("Facility"));
         PriceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
         table.setItems(observableList);
+        table.setEditable(true);
+        PriceColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     ObservableList<Edit> observableList = FXCollections.observableArrayList(
-            new Edit("Classical Facial","500 RON"), new Edit("Acnee reduction facial", "200 RON"),
-            new Edit("LED light therapy", "400 RON"), new Edit("Acupuncture facial", "300 RON")
-    );
+            new Edit("Classic massage","300 RON"), new Edit("Deep tisue massage", "400 RON"),
+            new Edit("Hot stone massage","200 RON"), new Edit("Sports massage","350 RON"),
+            new Edit("Thai massage","400 RON"));
+
+    public void onEditChange(TableColumn.CellEditEvent<Edit, String> editStringCellEditEvent) {
+        Edit e1 = table.getSelectionModel().getSelectedItem();
+        e1.setPrice(editStringCellEditEvent.getNewValue());
+    }
 }

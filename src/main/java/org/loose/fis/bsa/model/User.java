@@ -1,4 +1,6 @@
 package org.loose.fis.bsa.model;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import org.dizitart.no2.objects.Id;
 
 
@@ -18,6 +20,10 @@ public class User {
         this.username = username;
         this.password = password;
         this.role = role;
+    }
+
+    public User(){
+
     }
 
     public String getUsername() {
