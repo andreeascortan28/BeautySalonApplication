@@ -13,13 +13,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.dizitart.no2.objects.ObjectRepository;
-import org.loose.fis.bsa.model.LoggedUser;
 import org.loose.fis.bsa.model.Reservation;
 import org.loose.fis.bsa.services.UserService;
 
 import java.io.IOException;
 
-public class ViewScheduleController {
+public class DeleteReservationsController {
 
     @FXML
     private Button backButton;
@@ -29,6 +28,9 @@ public class ViewScheduleController {
 
     @FXML
     private TableColumn<Reservation, String> date;
+
+    @FXML
+    private Button deleteButton;
 
     @FXML
     private TableColumn<Reservation, String> departmentfacility;
@@ -43,6 +45,7 @@ public class ViewScheduleController {
     private TableView<Reservation> table;
 
     private static ObjectRepository<Reservation> reservationRepository = UserService.getReservationRepository();
+
 
     @FXML
     public void handleBackButton() throws IOException {
@@ -70,11 +73,14 @@ public class ViewScheduleController {
         ObservableList<Reservation> reservationsList = FXCollections.observableArrayList();
 
         for(Reservation reservation : reservationRepository.find()) {
-                reservationsList.add(reservation);
+            reservationsList.add(reservation);
         }
         table.setItems(reservationsList);
     }
 
+    @FXML
+    void handleDeleteButton(ActionEvent event) {
 
+    }
 
 }
