@@ -7,6 +7,7 @@ import javafx.scene.control.ChoiceBox;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.bsa.exceptions.*;
+import org.loose.fis.bsa.model.DepartmentFacility;
 import org.loose.fis.bsa.model.LoggedUser;
 import org.loose.fis.bsa.model.Reservation;
 import org.loose.fis.bsa.model.User;
@@ -19,16 +20,13 @@ import java.util.Objects;
 
 // java -jar --module-path F:\javafx-sdk-18.0.1\lib --add-modules javafx.controls,javafx.fxml F:\nitrite-explorer-3.4.3.jar
 
-/*
-maria 11 customer
-erika 22 customer
-
- */
 public class UserService {
 
     private static ObjectRepository<User> userRepository;
 
     private static ObjectRepository<Reservation> reservationRepository;
+
+    private static ObjectRepository<DepartmentFacility> departmentFacilityRepository;
 
     private static Nitrite database;
 
@@ -40,6 +38,8 @@ public class UserService {
 
         userRepository = database.getRepository(User.class);
         reservationRepository = database.getRepository(Reservation.class);
+        departmentFacilityRepository = database.getRepository(DepartmentFacility.class);
+        addDepartments();
 
     }
 
@@ -48,11 +48,58 @@ public class UserService {
         return reservationRepository;
     }
 
+    public static ObjectRepository<DepartmentFacility> getDepartmentFacilityRepository() { return departmentFacilityRepository; }
+
 
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
         userRepository.insert(new User(username, encodePassword(username, password), role));
     }
+
+    public static void addReservation(String username, String departmentfacility, String date, String hour, int price) throws EmptyDateFieldException, EmptyDepartmentFieldException, EmptyHourFieldException, MakingReservationException, NotFreeWindowException {
+
+        checkFreeWindowForUser(username, date, hour);
+        checkFreeWindow(departmentfacility, date, hour);
+        reservationRepository.insert(new Reservation(username, departmentfacility, date, hour, price));
+
+    }
+
+    public static void addDepartments() {
+
+        //preturile puse fix la inceput
+
+        departmentFacilityRepository.insert(new DepartmentFacility("Hair salon - Hair cutting", 80));
+        departmentFacilityRepository.insert(new DepartmentFacility("Hair salon - Colouring", 220));
+        departmentFacilityRepository.insert(new DepartmentFacility("Hair salon - Styling", 150));
+
+        departmentFacilityRepository.insert(new DepartmentFacility("Make-up - Everyday make-up", 50));
+        departmentFacilityRepository.insert(new DepartmentFacility("Make-up - Wedding make-up", 100));
+
+        departmentFacilityRepository.insert(new DepartmentFacility("Hair removal - Face", 30));
+        departmentFacilityRepository.insert(new DepartmentFacility("Hair removal - Legs", 100));
+        departmentFacilityRepository.insert(new DepartmentFacility("Hair removal - Back and chest", 50));
+        departmentFacilityRepository.insert(new DepartmentFacility("Hair removal - Underarms", 20));
+        departmentFacilityRepository.insert(new DepartmentFacility("Hair removal - Arms", 50));
+
+        departmentFacilityRepository.insert(new DepartmentFacility("Nails - Manicure", 80));
+        departmentFacilityRepository.insert(new DepartmentFacility("Nails - Pedicure", 50));
+        departmentFacilityRepository.insert(new DepartmentFacility("Nails - Mani-Pedi", 100));
+
+        departmentFacilityRepository.insert(new DepartmentFacility("Facial treatments - Classic facial", 100));
+        departmentFacilityRepository.insert(new DepartmentFacility("Facial treatments - Acne reduction facial", 150));
+        departmentFacilityRepository.insert(new DepartmentFacility("Facial treatments - LED light therapy", 300));
+        departmentFacilityRepository.insert(new DepartmentFacility("Facial treatments - Acupunture facial", 250));
+
+
+        departmentFacilityRepository.insert(new DepartmentFacility("Massage - Classic facial", 100));
+        departmentFacilityRepository.insert(new DepartmentFacility("Massage - Deep tissue massage", 150));
+        departmentFacilityRepository.insert(new DepartmentFacility("Massage - Hot stone massage", 200));
+        departmentFacilityRepository.insert(new DepartmentFacility("Massage - Sports massage", 150));
+        departmentFacilityRepository.insert(new DepartmentFacility("Massage - Thai massage", 300));
+
+
+    }
+
 
     public static void checkCredentials(String username, String password, String role) throws UsernameDoesNotExistException, WrongPasswordException, WrongRoleException {
         int verifPass = 1, verifUser = 1, verifRole = 1;
@@ -89,15 +136,6 @@ public class UserService {
         }
     }
 
-
-
-    public static void addReservation(String username, String departmentfacility, String date, String hour, int price) throws EmptyDateFieldException, EmptyDepartmentFieldException, EmptyHourFieldException, MakingReservationException, NotFreeWindowException {
-
-        checkFreeWindowForUser(username, date, hour);
-        checkFreeWindow(departmentfacility, date, hour);
-        reservationRepository.insert(new Reservation(username, departmentfacility, date, hour, price));
-
-    }
 
 
     public static void checkEmptyFieldForReservation(ChoiceBox departmentfacility, String date, ChoiceBox hour) throws EmptyDateFieldException, EmptyDepartmentFieldException, EmptyHourFieldException {
