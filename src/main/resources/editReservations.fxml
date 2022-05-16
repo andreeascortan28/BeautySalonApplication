@@ -31,9 +31,9 @@
               <columns>
                 <TableColumn fx:id="username" prefWidth="110.40008544921875" text="Client's username" />
                 <TableColumn fx:id="depfac" prefWidth="176.00001525878906" text="Department and facility" />
-                  <TableColumn fx:id="date" prefWidth="79.20001220703125" text="Date" />
-                  <TableColumn fx:id="hour" prefWidth="55.20001220703125" text="Hour" />
-                  <TableColumn fx:id="price" prefWidth="69.60003662109375" text="Price" />
+                  <TableColumn fx:id="date" onEditCommit="#onEditChange" prefWidth="79.20001220703125" text="Date" />
+                  <TableColumn fx:id="hour" onEditCommit="#onEditChange" prefWidth="55.20001220703125" text="Hour" />
+                  <TableColumn fx:id="price" onEditCommit="#onEditChange" prefWidth="69.60003662109375" text="Price" />
               </columns>
             </TableView>
             <Button fx:id="back" layoutX="511.0" layoutY="261.0" mnemonicParsing="false" onAction="#handleInapoiAction" style="-fx-background-color: ff8585;" text="Back" textFill="WHITE">

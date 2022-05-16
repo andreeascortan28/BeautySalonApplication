@@ -5,26 +5,26 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Button;
 
 public class Edit {
-    private SimpleStringProperty Facility;
-    private SimpleStringProperty Price;
+    private String Facility;
+    private Integer Price;
 
-    public Edit(String Facility, String Price){
-        this.Facility = new SimpleStringProperty(Facility);
-        this.Price = new SimpleStringProperty(Price);
+    public Edit(String Facility, Integer Price){
+        this.Facility = Facility;
+        this.Price = Price;
     }
 
     public void setFacility(String Facility){
-        this.Facility = new SimpleStringProperty(Facility);
+        this.Facility = Facility;
     }
     public String getFacility(){
-        return Facility.get();
+        return Facility;
     }
 
-    public void setPrice(String Pret){
-        this.Price = new SimpleStringProperty(Pret);
+    public void setPrice(Integer Pret){
+        this.Price = Pret;
     }
 
-    public String getPrice(){
-        return Price.get();
+    public Integer getPrice(){
+        return Price;
     }
 }

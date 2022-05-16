@@ -63,6 +63,20 @@ public class UserService {
 
     }
 
+    public static void changePrice(String facil, Integer price) {
+
+        for(DepartmentFacility departmentfacility : departmentFacilityRepository.find()) {
+            String[] parts = ((String) departmentfacility.getDepartmentfacility()).split(" - ");
+            String facility = parts[1]; //ce i in baza de date
+
+            if(Objects.equals(facility, facil)) {
+                departmentfacility.setPrice(price);
+                departmentFacilityRepository.update(departmentfacility);
+            }
+        }
+
+    }
+
     public static void addDepartments() {
 
         //preturile puse fix la inceput
@@ -98,6 +112,8 @@ public class UserService {
 
 
     }
+
+
 
 
     public static void checkCredentials(String username, String password, String role) throws UsernameDoesNotExistException, WrongPasswordException, WrongRoleException {
