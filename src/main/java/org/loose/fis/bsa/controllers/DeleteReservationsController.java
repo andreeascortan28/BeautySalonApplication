@@ -78,9 +78,27 @@ public class DeleteReservationsController {
         table.setItems(reservationsList);
     }
 
+
     @FXML
-    void handleDeleteButton(ActionEvent event) {
+    void handleDeleteButton(ActionEvent event) throws IOException {
+
+        /*
+        Parent rootDelete = FXMLLoader.load(getClass().getClassLoader().getResource("reasonForDeleting.fxml"));
+
+        Scene scene = new Scene(rootDelete);
+
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+*/
+
+        for(Reservation reservation : table.getSelectionModel().getSelectedItems()) {
+            UserService.deleteReservation(reservation);
+        }
+        table.getItems().removeAll(table.getSelectionModel().getSelectedItems());
+
 
     }
+
 
 }

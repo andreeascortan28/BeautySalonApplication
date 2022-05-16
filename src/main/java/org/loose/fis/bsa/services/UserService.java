@@ -63,6 +63,11 @@ public class UserService {
 
     }
 
+    public static void deleteReservation(Reservation reservation) {
+        reservationRepository.remove(reservation);
+
+    }
+
     public static void addDepartments() {
 
         //preturile puse fix la inceput
@@ -169,7 +174,7 @@ public class UserService {
     private static void checkFreeWindowForUser(String username, String date, String hour) throws NotFreeWindowException {
 
         int ok = 0;
-        System.out.println("am intrat in check free window user");
+        //System.out.println("am intrat in check free window user");
         for(Reservation reservation : reservationRepository.find()) {
             if(username.equals(reservation.getUsername())) {
                 if(date.equals(reservation.getDate()) && hour.equals(reservation.getHour()))

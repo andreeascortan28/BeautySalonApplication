@@ -46,10 +46,10 @@ public class ViewScheduleController {
 
     @FXML
     public void handleBackButton() throws IOException {
-        Parent rootSignOut = FXMLLoader.load(getClass().getClassLoader().getResource("employeePage.fxml"));
+        Parent rootBack = FXMLLoader.load(getClass().getClassLoader().getResource("employeePage.fxml"));
         Stage stage = (Stage) (backButton.getScene().getWindow());
         stage.setTitle("Customer page");
-        stage.setScene(new Scene(rootSignOut, 600, 400));
+        stage.setScene(new Scene(rootBack, 600, 400));
         stage.show();
     }
 

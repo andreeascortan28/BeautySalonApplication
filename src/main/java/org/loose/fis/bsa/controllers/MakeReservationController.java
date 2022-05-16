@@ -52,10 +52,10 @@ public class MakeReservationController  {
 
     @FXML
     public void handleBack() throws IOException {
-        Parent rootSignOut = FXMLLoader.load(getClass().getClassLoader().getResource("customerPage.fxml"));
+        Parent rootBack = FXMLLoader.load(getClass().getClassLoader().getResource("customerPage.fxml"));
         Stage stage = (Stage) (backButton.getScene().getWindow());
         stage.setTitle("Customer page");
-        stage.setScene(new Scene(rootSignOut, 600, 400));
+        stage.setScene(new Scene(rootBack, 600, 400));
         stage.show();
     }
 
@@ -156,7 +156,7 @@ public class MakeReservationController  {
 
     public int setPrice(ChoiceBox departmentfacility) {
 
-        System.out.println("am intrat in setprice");
+        //System.out.println("am intrat in setprice");
         int price = 0;
         String depfac = (String) departmentfacility.getValue();
         for(DepartmentFacility departmentFacility : departmentFacilityRepository.find())
@@ -167,70 +167,6 @@ public class MakeReservationController  {
         return price;
 
 
-        /*if (departmentfacility.getSelectionModel().isEmpty())
-            return 0;
-        else
-        {
-            String[] parts = ((String) departmentfacility.getValue()).split(" - ");
-            String department = parts[0];
-            String facility = parts[1];
-
-            if (department.equals("Hair Salon")) {
-                if (facility.equals("Hair cutting"))
-                    price = 80;
-                else if (facility.equals("Colouring"))
-                    price = 220;
-                else if (facility.equals("Styling"))
-                    price = 150;
-            } else if (department.equals("Make-up")) {
-                if (facility.equals("Everyday make-up"))
-                    price = 50;
-                else if (facility.equals("Wedding make-up"))
-                    price = 100;
-
-            } else if (department.equals("Hair removal")) {
-                if (facility.equals("Face"))
-                    price = 30;
-                else if (facility.equals("Legs"))
-                    price = 100;
-                else if (facility.equals("Back and chest"))
-                    price = 50;
-                else if (facility.equals("Underarms"))
-                    price = 20;
-                else if (facility.equals("Arms"))
-                    price = 50;
-            } else if (department.equals("Nails")) {
-                if (facility.equals("Manicure"))
-                    price = 80;
-                else if (facility.equals("Pedicure"))
-                    price = 50;
-                else if (facility.equals("Mani-Pedi"))
-                    price = 100;
-            } else if (department.equals("Facial treatments")) {
-                if (facility.equals("Classic facial"))
-                    price = 100;
-                else if (facility.equals("Acne reduction facial"))
-                    price = 150;
-                else if (facility.equals("LED light therapy"))
-                    price = 300;
-                else if (facility.equals("Acupuncture facial"))
-                    price = 250;
-            } else if (department.equals("Massage")) {
-                if (facility.equals("Classic massage"))
-                    price = 100;
-                else if (facility.equals("Deep tissue massage"))
-                    price = 150;
-                else if (facility.equals("Hot stone massage"))
-                    price = 200;
-                else if (facility.equals("Sports massage"))
-                    price = 150;
-                else if (facility.equals("Thai massage"))
-                    price = 300;
-            }
-            return price;
-        }
-
-         */
 
     }
 

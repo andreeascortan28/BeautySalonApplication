@@ -1,9 +1,15 @@
 package org.loose.fis.bsa.model;
 
 
+import org.dizitart.no2.Nitrite;
+import org.dizitart.no2.NitriteId;
+import org.dizitart.no2.objects.Id;
 
 public class Reservation {
 
+
+    @Id
+    private NitriteId id;
 
     private String username;
     private String hour;
@@ -14,7 +20,6 @@ public class Reservation {
     private String department;
 
     private String facility;
-
 
     private int price;
 
@@ -84,5 +89,7 @@ public class Reservation {
     }
 
 
-
+    public NitriteId getId() {
+        return id;
+    }
 }
