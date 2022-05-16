@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.bsa.controllers.MakeUpControllerEmployee">
    <children>
       <SplitPane dividerPositions="0.21636546184738958" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0">
@@ -42,7 +41,7 @@
                         <Font size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="save" layoutX="458.0" layoutY="271.0" mnemonicParsing="false" style="-fx-background-color: ff8585;" text="Save" textFill="WHITE">
+                  <Button fx:id="save" layoutX="458.0" layoutY="271.0" mnemonicParsing="false" onAction="#saveChanges" style="-fx-background-color: ff8585;" text="Save" textFill="WHITE">
                      <font>
                         <Font size="13.0" />
                      </font>

@@ -42,7 +42,7 @@
                         <Font size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="save" layoutX="456.0" layoutY="270.0" mnemonicParsing="false" style="-fx-background-color: ff8585;" text="Save" textFill="WHITE">
+                  <Button fx:id="save" onAction="#saveChanges" layoutX="456.0" layoutY="270.0" mnemonicParsing="false" style="-fx-background-color: ff8585;" text="Save" textFill="WHITE">
                      <font>
                         <Font size="13.0" />
                      </font>

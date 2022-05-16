@@ -41,6 +41,6 @@ public class NailsController implements Initializable {
     }
 
     ObservableList<Edit> observableList = FXCollections.observableArrayList(
-            new Edit("Manicure","250 RON"), new Edit("Pedicure", "200 RON"),
-            new Edit("Mani-Pedi","450 RON"));
+            new Edit("Manicure",250), new Edit("Pedicure", 200),
+            new Edit("Mani-Pedi",450));
 }

@@ -41,8 +41,8 @@ public class HairSalonController implements Initializable {
     }
 
     ObservableList<Edit> observableList = FXCollections.observableArrayList(
-            new Edit("Hair cutting","50 RON"), new Edit("Colouring", "100 RON"),
-            new Edit("Styling", "100 RON"));
+            new Edit("Hair cutting",50), new Edit("Colouring", 100),
+            new Edit("Styling", 100));
 }
 
 

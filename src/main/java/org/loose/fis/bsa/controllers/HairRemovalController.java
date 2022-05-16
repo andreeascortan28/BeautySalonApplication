@@ -41,7 +41,7 @@ public class HairRemovalController implements Initializable {
     }
 
     ObservableList<Edit> observableList = FXCollections.observableArrayList(
-            new Edit("Face","50 RON"), new Edit("Legs", "100 RON"),
-            new Edit("Back and chest", "100 RON"), new Edit("Underarms", "50 RON"),
-            new Edit("Arms","50 RON"));
+            new Edit("Face",50), new Edit("Legs", 100),
+            new Edit("Back and chest", 100), new Edit("Underarms", 50),
+            new Edit("Arms",50));
 }

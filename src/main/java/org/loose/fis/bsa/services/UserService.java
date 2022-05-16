@@ -5,12 +5,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
 import org.dizitart.no2.Nitrite;
+import org.dizitart.no2.objects.ObjectFilter;
 import org.dizitart.no2.objects.ObjectRepository;
+import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.loose.fis.bsa.exceptions.*;
-import org.loose.fis.bsa.model.DepartmentFacility;
-import org.loose.fis.bsa.model.LoggedUser;
-import org.loose.fis.bsa.model.Reservation;
-import org.loose.fis.bsa.model.User;
+import org.loose.fis.bsa.model.*;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -63,7 +62,24 @@ public class UserService {
 
     }
 
+    public static  ObservableList<Edit> getAllFacilitiesByDept(String dept){
+        ObservableList<Edit> ol = FXCollections.observableArrayList();
+        for(DepartmentFacility dp : departmentFacilityRepository.find()){
+            String[] parts = dp.getDepartmentfacility().split(" - ");
+            //System.out.println(parts[0]+" "+dept);
+            if(parts[0].equals(dept))
+                ol.add(new Edit(parts[1],dp.getPrice()));
+        }
+        return ol;
+    }
+    public static void updateDeptPrice(String name, int newPrice){
+        departmentFacilityRepository.update(ObjectFilters.eq("departmentfacility",name),
+                new DepartmentFacility(name,newPrice));
+    }
     public static void addDepartments() {
+        if(departmentFacilityRepository.find().size()!=0)
+            return;
+        departmentFacilityRepository.remove(ObjectFilters.ALL);
 
         //preturile puse fix la inceput
 
