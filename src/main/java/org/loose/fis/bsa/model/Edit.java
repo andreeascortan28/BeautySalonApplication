@@ -1,15 +1,16 @@
 package org.loose.fis.bsa.model;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Button;
 
 public class Edit {
     private SimpleStringProperty Facility;
-    private SimpleStringProperty Price;
+    private SimpleIntegerProperty Price;
 
-    public Edit(String Facility, String Price){
+    public Edit(String Facility, Integer Price){
         this.Facility = new SimpleStringProperty(Facility);
-        this.Price = new SimpleStringProperty(Price);
+        this.Price = new SimpleIntegerProperty(Price);
     }
 
     public void setFacility(String Facility){
@@ -19,11 +20,11 @@ public class Edit {
         return Facility.get();
     }
 
-    public void setPrice(String Pret){
-        this.Price = new SimpleStringProperty(Pret);
+    public void setPrice(Integer Pret){
+        this.Price = new SimpleIntegerProperty(Pret);
     }
 
-    public String getPrice(){
+    public Integer getPrice(){
         return Price.get();
     }
 }

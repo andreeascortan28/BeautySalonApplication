@@ -41,5 +41,5 @@ public class MakeUpController implements Initializable {
     }
 
     ObservableList<Edit> observableList = FXCollections.observableArrayList(
-            new Edit("Everyday make-up","150 RON"), new Edit("Wedding make-up", "300 RON"));
+            new Edit("Everyday make-up",150), new Edit("Wedding make-up", 300));
 }
