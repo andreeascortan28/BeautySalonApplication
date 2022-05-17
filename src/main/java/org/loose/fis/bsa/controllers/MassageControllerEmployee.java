@@ -47,11 +47,11 @@ public class MassageControllerEmployee implements Initializable {
     }
 
     ObservableList<Edit> observableList = FXCollections.observableArrayList(
-            new Edit("Classic massage","300 RON"), new Edit("Deep tisue massage", "400 RON"),
-            new Edit("Hot stone massage","200 RON"), new Edit("Sports massage","350 RON"),
-            new Edit("Thai massage","400 RON"));
+            new Edit("Classic massage",300), new Edit("Deep tisue massage", 400),
+            new Edit("Hot stone massage",200), new Edit("Sports massage",350),
+            new Edit("Thai massage",400));
 
-    public void onEditChange(TableColumn.CellEditEvent<Edit, String> editStringCellEditEvent) {
+    public void onEditChange(TableColumn.CellEditEvent<Edit, Integer> editStringCellEditEvent) {
         Edit e1 = table.getSelectionModel().getSelectedItem();
         e1.setPrice(editStringCellEditEvent.getNewValue());
     }

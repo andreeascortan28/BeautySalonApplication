@@ -46,9 +46,9 @@ public class MakeUpControllerEmployee implements Initializable {
     }
 
     ObservableList<Edit> observableList = FXCollections.observableArrayList(
-            new Edit("Everyday make-up","150 RON"), new Edit("Wedding make-up", "300 RON"));
+            new Edit("Everyday make-up",150), new Edit("Wedding make-up", 300));
 
-    public void onEditChange(TableColumn.CellEditEvent<Edit, String> editStringCellEditEvent) {
+    public void onEditChange(TableColumn.CellEditEvent<Edit, Integer> editStringCellEditEvent) {
         Edit e1 = table.getSelectionModel().getSelectedItem();
         e1.setPrice(editStringCellEditEvent.getNewValue());
     }

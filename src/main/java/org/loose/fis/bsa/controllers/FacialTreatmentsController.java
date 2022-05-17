@@ -48,7 +48,7 @@ public class FacialTreatmentsController implements Initializable
     }
 
     ObservableList<Edit> observableList = FXCollections.observableArrayList(
-            new Edit("Classical Facial","500 RON"), new Edit("Acnee reduction facial", "200 RON"),
-            new Edit("LED light therapy", "400 RON"), new Edit("Acupuncture facial", "300 RON")
+            new Edit("Classical Facial",500 ), new Edit("Acnee reduction facial", 200 ),
+            new Edit("LED light therapy", 400 ), new Edit("Acupuncture facial", 300)
     );
 }
