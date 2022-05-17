@@ -66,13 +66,12 @@ public class ViewReservationController {
     }
 
 
-
     @FXML
     public void handleBackAction() throws IOException {
-        Parent rootSignOut = FXMLLoader.load(getClass().getClassLoader().getResource("customerPage.fxml"));
+        Parent rootBack = FXMLLoader.load(getClass().getClassLoader().getResource("customerPage.fxml"));
         Stage stage = (Stage) (backButton.getScene().getWindow());
         stage.setTitle("Customer page");
-        stage.setScene(new Scene(rootSignOut, 600, 400));
+        stage.setScene(new Scene(rootBack, 600, 400));
         stage.show();
     }
 }

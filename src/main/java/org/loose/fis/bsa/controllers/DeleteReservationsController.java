@@ -13,13 +13,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.dizitart.no2.objects.ObjectRepository;
-import org.loose.fis.bsa.model.LoggedUser;
 import org.loose.fis.bsa.model.Reservation;
 import org.loose.fis.bsa.services.UserService;
 
 import java.io.IOException;
 
-public class ViewScheduleController {
+public class DeleteReservationsController {
 
     @FXML
     private Button backButton;
@@ -29,6 +28,9 @@ public class ViewScheduleController {
 
     @FXML
     private TableColumn<Reservation, String> date;
+
+    @FXML
+    private Button deleteButton;
 
     @FXML
     private TableColumn<Reservation, String> departmentfacility;
@@ -44,12 +46,13 @@ public class ViewScheduleController {
 
     private static ObjectRepository<Reservation> reservationRepository = UserService.getReservationRepository();
 
+
     @FXML
     public void handleBackButton() throws IOException {
-        Parent rootBack = FXMLLoader.load(getClass().getClassLoader().getResource("employeePage.fxml"));
+        Parent rootSignOut = FXMLLoader.load(getClass().getClassLoader().getResource("employeePage.fxml"));
         Stage stage = (Stage) (backButton.getScene().getWindow());
         stage.setTitle("Customer page");
-        stage.setScene(new Scene(rootBack, 600, 400));
+        stage.setScene(new Scene(rootSignOut, 600, 400));
         stage.show();
     }
 
@@ -70,11 +73,32 @@ public class ViewScheduleController {
         ObservableList<Reservation> reservationsList = FXCollections.observableArrayList();
 
         for(Reservation reservation : reservationRepository.find()) {
-                reservationsList.add(reservation);
+            reservationsList.add(reservation);
         }
         table.setItems(reservationsList);
     }
 
+
+    @FXML
+    void handleDeleteButton(ActionEvent event) throws IOException {
+
+        /*
+        Parent rootDelete = FXMLLoader.load(getClass().getClassLoader().getResource("reasonForDeleting.fxml"));
+
+        Scene scene = new Scene(rootDelete);
+
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+*/
+
+        for(Reservation reservation : table.getSelectionModel().getSelectedItems()) {
+            UserService.deleteReservation(reservation);
+        }
+        table.getItems().removeAll(table.getSelectionModel().getSelectedItems());
+
+
+    }
 
 
 }
