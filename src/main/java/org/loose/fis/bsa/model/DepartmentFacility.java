@@ -6,6 +6,9 @@ public class DepartmentFacility {
 
     private int price;
 
+    public DepartmentFacility() {
+
+    }
     public DepartmentFacility(String departmentfacility, int price) {
         this.departmentfacility = departmentfacility;
         this.price = price;
