@@ -55,19 +55,14 @@ public class UserService {
         userRepository.insert(new User(username, encodePassword(username, password), role));
     }
 
-    public static void addReservation(String username, String departmentfacility, String date, String hour, int price) throws EmptyDateFieldException, EmptyDepartmentFieldException, EmptyHourFieldException, MakingReservationException, NotFreeWindowException {
+    public static void addReservation(String username, String departmentfacility, String date, String hour, int price) throws EmptyDateFieldException, EmptyDepartmentFieldException, EmptyHourFieldException, MakingReservationException, NotFreeWindowException, WrongDateException {
 
         checkFreeWindowForUser(username, date, hour);
         checkFreeWindow(departmentfacility, date, hour);
+        checkDate(date);
         reservationRepository.insert(new Reservation(username, departmentfacility, date, hour, price));
 
     }
-
-    public static void deleteReservation(Reservation reservation) {
-        reservationRepository.remove(reservation);
-
-    }
-
     public static void addDepartments() {
 
         //preturile puse fix la inceput
@@ -103,6 +98,12 @@ public class UserService {
 
 
     }
+
+    public static void deleteReservation(Reservation reservation) {
+        reservationRepository.remove(reservation);
+
+    }
+
 
 
     public static void checkCredentials(String username, String password, String role) throws UsernameDoesNotExistException, WrongPasswordException, WrongRoleException {
@@ -183,6 +184,27 @@ public class UserService {
         }
         if(ok == 1)
             throw new NotFreeWindowException();
+    }
+
+    public static void checkDate(String date) throws WrongDateException {
+
+        int ok = 1;
+        if(date != "") {
+            if(date.length() != 10)
+                throw new WrongDateException();
+            if (date.charAt(2) != '/' || date.charAt(5) != '/')
+                throw new WrongDateException();
+            String parts[] = date.split("/");
+            if(Integer.parseInt(parts[0]) < 1 || Integer.parseInt(parts[0]) > 31) ok = 0;
+            if(Integer.parseInt(parts[1]) < 1 || Integer.parseInt(parts[0]) > 12) ok = 0;
+            if(Integer.parseInt(parts[2]) < 2022) ok = 0;
+        }
+
+
+
+        if(ok == 0)
+            throw new WrongDateException();
+
     }
 
 

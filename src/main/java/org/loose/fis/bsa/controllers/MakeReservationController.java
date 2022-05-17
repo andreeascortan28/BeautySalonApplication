@@ -133,7 +133,7 @@ public class MakeReservationController  {
     }
 
 
-    public void handleMakeReservation() throws EmptyDepartmentFieldException, EmptyDateFieldException, EmptyHourFieldException, MakingReservationException, NotFreeWindowException, IOException {
+    public void handleMakeReservation() throws EmptyDepartmentFieldException, EmptyDateFieldException, EmptyHourFieldException, MakingReservationException, NotFreeWindowException, IOException, WrongDateException {
         try {
             UserService.checkEmptyFieldForReservation(departmentfacility, date.getText(), hour);
             UserService.addReservation(LoggedUser.getLoggedUser(), (String) departmentfacility.getValue(), date.getText(), (String) hour.getValue(), setPrice(departmentfacility));
@@ -148,6 +148,8 @@ public class MakeReservationController  {
         }  catch (MakingReservationException e) {
             makeReservationMessage.setText(e.getMessage());
         } catch (NotFreeWindowException e) {
+            makeReservationMessage.setText(e.getMessage());
+        } catch (WrongDateException e ) {
             makeReservationMessage.setText(e.getMessage());
         }
 
