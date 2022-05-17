@@ -46,7 +46,8 @@ public class UserService {
         return reservationRepository;
     }
 
-    public static ObjectRepository<DepartmentFacility> getDepartmentFacilityRepository() { return departmentFacilityRepository; }
+    public static ObjectRepository<DepartmentFacility> getDepartmentFacilityRepository()
+    { return departmentFacilityRepository; }
 
 
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
@@ -54,10 +55,11 @@ public class UserService {
         userRepository.insert(new User(username, encodePassword(username, password), role));
     }
 
-    public static void addReservation(String username, String departmentfacility, String date, String hour, int price) throws EmptyDateFieldException, EmptyDepartmentFieldException, EmptyHourFieldException, MakingReservationException, NotFreeWindowException {
+    public static void addReservation(String username, String departmentfacility, String date, String hour, int price) throws EmptyDateFieldException, EmptyDepartmentFieldException, EmptyHourFieldException, MakingReservationException, NotFreeWindowException, WrongDateException {
 
         checkFreeWindowForUser(username, date, hour);
         checkFreeWindow(departmentfacility, date, hour);
+        checkDate(date);
         reservationRepository.insert(new Reservation(username, departmentfacility, date, hour, price));
 
     }
@@ -75,6 +77,10 @@ public class UserService {
     public static void updateDeptPrice(String name, int newPrice){
         departmentFacilityRepository.update(ObjectFilters.eq("departmentfacility",name),
                 new DepartmentFacility(name,newPrice));
+    }
+
+    public static void updateReservations(String user, String depfac, String date, String hour, int price){
+        reservationRepository.update(ObjectFilters.eq("username",user), new Reservation(user,depfac,date,hour,price));
     }
     public static void addDepartments() {
         if(departmentFacilityRepository.find().size()!=0)
@@ -113,6 +119,10 @@ public class UserService {
         departmentFacilityRepository.insert(new DepartmentFacility("Massage - Thai massage", 300));
 
 
+    }
+
+    public static void deleteReservation(Reservation reservation){
+        reservationRepository.remove(reservation);
     }
 
 
@@ -182,7 +192,7 @@ public class UserService {
 
     }
 
-    private static void checkFreeWindowForUser(String username, String date, String hour) throws NotFreeWindowException {
+    public static void checkFreeWindowForUser(String username, String date, String hour) throws NotFreeWindowException {
 
         int ok = 0;
         System.out.println("am intrat in check free window user");
@@ -194,6 +204,27 @@ public class UserService {
         }
         if(ok == 1)
             throw new NotFreeWindowException();
+    }
+
+    public static void checkDate(String date) throws WrongDateException {
+
+        int ok = 1;
+        if(date != "") {
+            if(date.length() != 10)
+                throw new WrongDateException();
+            if (date.charAt(2) != '/' || date.charAt(5) != '/')
+                throw new WrongDateException();
+            String parts[] = date.split("/");
+            if(Integer.parseInt(parts[0]) < 1 || Integer.parseInt(parts[0]) > 31) ok = 0;
+            if(Integer.parseInt(parts[1]) < 1 || Integer.parseInt(parts[0]) > 12) ok = 0;
+            if(Integer.parseInt(parts[2]) < 2022) ok = 0;
+        }
+
+
+
+        if(ok == 0)
+            throw new WrongDateException();
+
     }
 
 

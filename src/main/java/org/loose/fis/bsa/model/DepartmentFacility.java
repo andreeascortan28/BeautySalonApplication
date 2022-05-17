@@ -14,7 +14,6 @@ public class DepartmentFacility {
         this.price = price;
     }
 
-    public DepartmentFacility(){};
 
     public String getDepartmentfacility() {
         return departmentfacility;
