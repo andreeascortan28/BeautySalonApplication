@@ -5,12 +5,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
 import org.dizitart.no2.Nitrite;
+import org.dizitart.no2.objects.ObjectFilter;
 import org.dizitart.no2.objects.ObjectRepository;
+import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.loose.fis.bsa.exceptions.*;
-import org.loose.fis.bsa.model.DepartmentFacility;
-import org.loose.fis.bsa.model.LoggedUser;
-import org.loose.fis.bsa.model.Reservation;
-import org.loose.fis.bsa.model.User;
+import org.loose.fis.bsa.model.*;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -47,7 +46,8 @@ public class UserService {
         return reservationRepository;
     }
 
-    public static ObjectRepository<DepartmentFacility> getDepartmentFacilityRepository() { return departmentFacilityRepository; }
+    public static ObjectRepository<DepartmentFacility> getDepartmentFacilityRepository()
+    { return departmentFacilityRepository; }
 
 
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
@@ -64,6 +64,24 @@ public class UserService {
 
     }
 
+    public static  ObservableList<Edit> getAllFacilitiesByDept(String dept){
+        ObservableList<Edit> ol = FXCollections.observableArrayList();
+        for(DepartmentFacility dp : departmentFacilityRepository.find()){
+            String[] parts = dp.getDepartmentfacility().split(" - ");
+            //System.out.println(parts[0]+" "+dept);
+            if(parts[0].equals(dept))
+                ol.add(new Edit(parts[1],dp.getPrice()));
+        }
+        return ol;
+    }
+    public static void updateDeptPrice(String name, int newPrice){
+        departmentFacilityRepository.update(ObjectFilters.eq("departmentfacility",name),
+                new DepartmentFacility(name,newPrice));
+    }
+
+    public static void updateReservations(String user, String depfac, String date, String hour, int price){
+        reservationRepository.update(ObjectFilters.eq("username",user), new Reservation(user,depfac,date,hour,price));
+    }
 
     public static void changePrice(String facil, Integer price) {
 
@@ -80,6 +98,9 @@ public class UserService {
     }
 
     public static void addDepartments() {
+        if(departmentFacilityRepository.find().size()!=0)
+            return;
+        departmentFacilityRepository.remove(ObjectFilters.ALL);
 
         //preturile puse fix la inceput
 
@@ -115,14 +136,9 @@ public class UserService {
 
     }
 
-    public static void deleteReservation(Reservation reservation) {
+    public static void deleteReservation(Reservation reservation){
         reservationRepository.remove(reservation);
-
     }
-
-
-
-
 
     public static void checkCredentials(String username, String password, String role) throws UsernameDoesNotExistException, WrongPasswordException, WrongRoleException {
         int verifPass = 1, verifUser = 1, verifRole = 1;
@@ -190,10 +206,10 @@ public class UserService {
 
     }
 
-    private static void checkFreeWindowForUser(String username, String date, String hour) throws NotFreeWindowException {
+    public static void checkFreeWindowForUser(String username, String date, String hour) throws NotFreeWindowException {
 
         int ok = 0;
-        //System.out.println("am intrat in check free window user");
+        System.out.println("am intrat in check free window user");
         for(Reservation reservation : reservationRepository.find()) {
             if(username.equals(reservation.getUsername())) {
                 if(date.equals(reservation.getDate()) && hour.equals(reservation.getHour()))

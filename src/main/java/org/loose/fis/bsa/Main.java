@@ -31,11 +31,11 @@ public class Main extends Application {
         primarystage.show();
     }
 
-    public void start2(Stage primaryStage) throws Exception{
+    /*public void start2(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("FacialTreatments.fxml"));
         primaryStage.setScene(new Scene(root,600,400));
         primaryStage.show();
-    }
+    }*/
 
     public static void main(String[] args) {
         launch(args);

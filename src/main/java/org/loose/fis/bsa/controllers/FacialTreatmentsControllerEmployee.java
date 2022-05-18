@@ -2,6 +2,7 @@ package org.loose.fis.bsa.controllers;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,6 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.fxml.Initializable;
+import javafx.util.converter.IntegerStringConverter;
 import org.loose.fis.bsa.model.User;
 import org.loose.fis.bsa.model.Edit;
 import org.loose.fis.bsa.services.UserService;
@@ -27,6 +29,7 @@ import java.awt.*;
 import static javafx.scene.control.cell.TextFieldTableCell.*;
 
 public class FacialTreatmentsControllerEmployee implements Initializable {
+    private final String DEPT = "Facial treatments";
     @FXML
     private Button back;
     @FXML
@@ -45,6 +48,22 @@ public class FacialTreatmentsControllerEmployee implements Initializable {
         stage.setScene(new Scene(root, 600, 400));
     }
 
+    @FXML
+    public void initialize(URL location, ResourceBundle resource){
+        try {
+
+            FacilityColumn.setCellValueFactory(new PropertyValueFactory<>("Facility"));
+            PriceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+            table.setItems(UserService.getAllFacilitiesByDept("Facial treatments"));
+            table.setEditable(true);
+            PriceColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void onEditChange(TableColumn.CellEditEvent<Edit, Integer> editStringCellEditEvent) {
+=======
     public void initialize(URL location, ResourceBundle resource) {
         FacilityColumn.setCellValueFactory(new PropertyValueFactory<>("Facility"));
         PriceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
@@ -64,6 +83,10 @@ public class FacialTreatmentsControllerEmployee implements Initializable {
 
     }
 
+    public void saveChanges(ActionEvent evt) {
+        for(Edit e : table.getItems()){
+            UserService.updateDeptPrice(DEPT+" - "+e.getFacility(),e.getPrice());
+        }
     public void saveChanges() throws Exception {
 
 
@@ -73,7 +96,6 @@ public class FacialTreatmentsControllerEmployee implements Initializable {
         TableColumn col = pos.getTableColumn();
         String new_price = (String) col.getCellObservableValue(item).getValue();
         //UserService.changePrice(FacilityColumn.getCellData(row), new_price);
-
 
     }
 }

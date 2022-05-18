@@ -29,13 +29,14 @@ public class HomePageEmployeeController {
 
     @FXML
     public void handleEditReservation() throws IOException {
-        Parent rootEditReservation = FXMLLoader.load(getClass().getClassLoader().getResource("editReservations.fxml"));
+        Parent rootEditReservation = FXMLLoader.load(getClass().getClassLoader().getResource("changeReservations.fxml"));
         Stage stage = (Stage) (editReservationsButton.getScene().getWindow());
         stage.setTitle("Edit Reservations");
         stage.setScene(new Scene(rootEditReservation, 600, 400));
         stage.show();
 
     }
+
 
     @FXML
     public void handleChangePrices() throws IOException {

@@ -54,8 +54,9 @@ public class Reservation {
     public String getDate() {
         return date;
     }
-
-
+    public void setDate(String date){
+        this.date = date;
+    }
 
     public void setDepartment(String department) {
         this.department = department;

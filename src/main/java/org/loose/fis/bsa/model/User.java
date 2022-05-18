@@ -13,12 +13,15 @@ public class User {
     private String role;
     private String option;
 
+   public User() {
+
+   }
+
     public User(String username, String password, String role) {
         this.username = username;
         this.password = password;
         this.role = role;
     }
-
 
     public String getUsername() {
         return username;
