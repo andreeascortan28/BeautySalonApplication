@@ -44,7 +44,6 @@ public class MassageControllerEmployee implements Initializable {
 
     public void initialize(URL location, ResourceBundle resource){
         try {
-
             FacilityColumn.setCellValueFactory(new PropertyValueFactory<>("Facility"));
             PriceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
             table.setItems(UserService.getAllFacilitiesByDept(DEPT));
@@ -54,6 +53,11 @@ public class MassageControllerEmployee implements Initializable {
             System.out.println(e.getMessage());
         }
     }
+  
+    ObservableList<Edit> observableList = FXCollections.observableArrayList(
+            new Edit("Classic massage",300), new Edit("Deep tisue massage", 400),
+            new Edit("Hot stone massage",200), new Edit("Sports massage",350),
+            new Edit("Thai massage",400));
 
     public void onEditChange(TableColumn.CellEditEvent<Edit, Integer> editStringCellEditEvent) {
         Edit e1 = table.getSelectionModel().getSelectedItem();

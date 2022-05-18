@@ -11,13 +11,20 @@ public class Edit {
     public Edit(String Facility, Integer Price){
         this.Facility = new SimpleStringProperty(Facility);
         this.Price = new SimpleIntegerProperty(Price);
+
+    private String Facility;
+    private Integer Price;
+
+    public Edit(String Facility, Integer Price){
+        this.Facility = Facility;
+        this.Price = Price;
     }
 
     public void setFacility(String Facility){
-        this.Facility = new SimpleStringProperty(Facility);
+        this.Facility = Facility;
     }
     public String getFacility(){
-        return Facility.get();
+        return Facility;
     }
 
     public void setPrice(Integer Pret){
@@ -26,5 +33,10 @@ public class Edit {
 
     public Integer getPrice(){
         return Price.get();
+        this.Price = Pret;
+    }
+
+    public Integer getPrice(){
+        return Price;
     }
 }

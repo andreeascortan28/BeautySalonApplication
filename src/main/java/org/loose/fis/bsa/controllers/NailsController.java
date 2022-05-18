@@ -35,12 +35,10 @@ public class NailsController implements Initializable {
     }
 
     public void initialize(URL location, ResourceBundle resource){
-        FacilityColumn.setCellValueFactory(new PropertyValueFactory<>("Facility"));
-        PriceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
-        table.setItems(observableList);
     }
-
+  
     ObservableList<Edit> observableList = FXCollections.observableArrayList(
             new Edit("Manicure",250), new Edit("Pedicure", 200),
             new Edit("Mani-Pedi",450));
+
 }

@@ -44,7 +44,6 @@ public class NailsControllerEmployee implements Initializable {
     @FXML
     public void initialize(URL location, ResourceBundle resource){
         try {
-
             FacilityColumn.setCellValueFactory(new PropertyValueFactory<>("Facility"));
             PriceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
             table.setItems(UserService.getAllFacilitiesByDept("Nails"));
@@ -54,6 +53,9 @@ public class NailsControllerEmployee implements Initializable {
             System.out.println(e.getMessage());
         }
     }
+    ObservableList<Edit> observableList = FXCollections.observableArrayList(
+            new Edit("Manicure",250), new Edit("Pedicure", 200),
+            new Edit("Mani-Pedi",450));
 
     public void onEditChange(TableColumn.CellEditEvent<Edit, Integer> editStringCellEditEvent) {
         Edit e1 = table.getSelectionModel().getSelectedItem();

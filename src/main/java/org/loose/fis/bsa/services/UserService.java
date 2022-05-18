@@ -82,6 +82,21 @@ public class UserService {
     public static void updateReservations(String user, String depfac, String date, String hour, int price){
         reservationRepository.update(ObjectFilters.eq("username",user), new Reservation(user,depfac,date,hour,price));
     }
+
+    public static void changePrice(String facil, Integer price) {
+
+        for(DepartmentFacility departmentfacility : departmentFacilityRepository.find()) {
+            String[] parts = ((String) departmentfacility.getDepartmentfacility()).split(" - ");
+            String facility = parts[1]; //ce i in baza de date
+
+            if(Objects.equals(facility, facil)) {
+                departmentfacility.setPrice(price);
+                departmentFacilityRepository.update(departmentfacility);
+            }
+        }
+
+    }
+
     public static void addDepartments() {
         if(departmentFacilityRepository.find().size()!=0)
             return;
@@ -124,7 +139,6 @@ public class UserService {
     public static void deleteReservation(Reservation reservation){
         reservationRepository.remove(reservation);
     }
-
 
     public static void checkCredentials(String username, String password, String role) throws UsernameDoesNotExistException, WrongPasswordException, WrongRoleException {
         int verifPass = 1, verifUser = 1, verifRole = 1;
