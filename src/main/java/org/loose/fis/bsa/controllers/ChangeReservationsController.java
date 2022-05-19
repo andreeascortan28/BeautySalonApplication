@@ -98,12 +98,11 @@ public class ChangeReservationsController /* implements Initializable */{
     public void onEditChange4(TableColumn.CellEditEvent<Reservation, String> editStringCellEditEvent){
         Reservation e4 = (Reservation) table.getSelectionModel().getSelectedItem();
         e4.setDepartmentfacility(editStringCellEditEvent.getNewValue());
-
     }
 
     public void saveChanges() {
         for(Reservation e : table.getItems()){
-            UserService.updateReservations(e.getUsername(), e.getDepartmentfacility(),e.getDate(), e.getHour(),e.getPrice());
+            UserService.updateReservations(e);
         }
     }
 

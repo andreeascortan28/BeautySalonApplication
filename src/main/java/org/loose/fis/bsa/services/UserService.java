@@ -79,8 +79,8 @@ public class UserService {
                 new DepartmentFacility(name,newPrice));
     }
 
-    public static void updateReservations(String user, String depfac, String date, String hour, int price){
-        reservationRepository.update(ObjectFilters.eq("username",user), new Reservation(user,depfac,date,hour,price));
+    public static void updateReservations(Reservation e){
+        reservationRepository.update(e);
     }
     public static void addDepartments() {
         if(departmentFacilityRepository.find().size()!=0)
