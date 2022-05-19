@@ -8,23 +8,17 @@ public class Edit {
     private SimpleStringProperty Facility;
     private SimpleIntegerProperty Price;
 
+
     public Edit(String Facility, Integer Price){
         this.Facility = new SimpleStringProperty(Facility);
         this.Price = new SimpleIntegerProperty(Price);
-
-    private String Facility;
-    private Integer Price;
-
-    public Edit(String Facility, Integer Price){
-        this.Facility = Facility;
-        this.Price = Price;
     }
 
     public void setFacility(String Facility){
-        this.Facility = Facility;
+        this.Facility = new SimpleStringProperty(Facility);
     }
     public String getFacility(){
-        return Facility;
+        return Facility.get();
     }
 
     public void setPrice(Integer Pret){
@@ -33,10 +27,5 @@ public class Edit {
 
     public Integer getPrice(){
         return Price.get();
-        this.Price = Pret;
-    }
-
-    public Integer getPrice(){
-        return Price;
     }
 }

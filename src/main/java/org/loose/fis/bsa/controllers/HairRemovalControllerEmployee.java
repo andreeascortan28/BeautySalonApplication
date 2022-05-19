@@ -52,24 +52,19 @@ public class HairRemovalControllerEmployee implements Initializable {
             System.out.println(e.getMessage());
         }
     }
-        public void onEditChange(TableColumn.CellEditEvent<Edit, Integer> editStringCellEditEvent) {
-            Edit e1 = table.getSelectionModel().getSelectedItem();
-            e1.setPrice(editStringCellEditEvent.getNewValue());
+    public void onEditChange(TableColumn.CellEditEvent<Edit, Integer> editStringCellEditEvent) {
+        Edit e1 = table.getSelectionModel().getSelectedItem();
+        e1.setPrice(editStringCellEditEvent.getNewValue());
+    }
+    public void saveChanges(ActionEvent evt) {
+        for(Edit e : table.getItems()){
+            UserService.updateDeptPrice(DEPT+" - "+e.getFacility(),e.getPrice());
         }
-        public void saveChanges(ActionEvent evt) {
-            for(Edit e : table.getItems()){
-                UserService.updateDeptPrice(DEPT+" - "+e.getFacility(),e.getPrice());
-            }
-        }
+    }
     ObservableList<Edit> observableList = FXCollections.observableArrayList(
             new Edit("Face",50 ), new Edit("Legs", 100 ),
             new Edit("Back and chest", 100 ), new Edit("Underarms", 50 ),
             new Edit("Arms",50 ));
 
-
-    public void onEditChange(TableColumn.CellEditEvent<Edit, Integer> editStringCellEditEvent) {
-        Edit e1 = table.getSelectionModel().getSelectedItem();
-        e1.setPrice(editStringCellEditEvent.getNewValue());
-    }
 }
 

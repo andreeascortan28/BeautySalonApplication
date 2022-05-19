@@ -14,6 +14,7 @@ import org.loose.fis.bsa.model.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -41,6 +42,14 @@ public class UserService {
 
     }
 
+
+    public static Nitrite getDatabase() {
+        return database;
+    }
+
+    public static List<User> usersList() {
+        return userRepository.find().toList();
+    }
 
     public static ObjectRepository<Reservation> getReservationRepository() {
         return reservationRepository;
@@ -79,24 +88,9 @@ public class UserService {
                 new DepartmentFacility(name,newPrice));
     }
 
-    public static void updateReservations(String user, String depfac, String date, String hour, int price){
-        reservationRepository.update(ObjectFilters.eq("username",user), new Reservation(user,depfac,date,hour,price));
+    public static void updateReservations(Reservation e){
+        reservationRepository.update(e);
     }
-
-    public static void changePrice(String facil, Integer price) {
-
-        for(DepartmentFacility departmentfacility : departmentFacilityRepository.find()) {
-            String[] parts = ((String) departmentfacility.getDepartmentfacility()).split(" - ");
-            String facility = parts[1]; //ce i in baza de date
-
-            if(Objects.equals(facility, facil)) {
-                departmentfacility.setPrice(price);
-                departmentFacilityRepository.update(departmentfacility);
-            }
-        }
-
-    }
-
     public static void addDepartments() {
         if(departmentFacilityRepository.find().size()!=0)
             return;
@@ -139,6 +133,7 @@ public class UserService {
     public static void deleteReservation(Reservation reservation){
         reservationRepository.remove(reservation);
     }
+
 
     public static void checkCredentials(String username, String password, String role) throws UsernameDoesNotExistException, WrongPasswordException, WrongRoleException {
         int verifPass = 1, verifUser = 1, verifRole = 1;
@@ -242,7 +237,7 @@ public class UserService {
     }
 
 
-    private static String encodePassword(String salt, String password) {
+    public static String encodePassword(String salt, String password) {
         MessageDigest md = getMessageDigest();
         md.update(salt.getBytes(StandardCharsets.UTF_8));
 
