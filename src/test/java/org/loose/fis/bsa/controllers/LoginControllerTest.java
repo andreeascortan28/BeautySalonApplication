@@ -68,6 +68,6 @@ class LoginControllerTest {
         robot.write("PASSWORD");
         robot.clickOn("#loginButton");
     }
+*/
 
- */
 }

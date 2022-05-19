@@ -103,7 +103,7 @@ public class ChangeReservationsController /* implements Initializable */{
 
     public void saveChanges() {
         for(Reservation e : table.getItems()){
-            UserService.updateReservations(e.getUsername(), e.getDepartmentfacility(),e.getDate(), e.getHour(),e.getPrice());
+            UserService.updateReservations(e);
         }
     }
 
