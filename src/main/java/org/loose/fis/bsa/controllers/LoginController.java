@@ -2,7 +2,6 @@ package org.loose.fis.bsa.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.LightBase;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,6 +18,7 @@ import org.loose.fis.bsa.model.LoggedUser;
 import org.loose.fis.bsa.services.UserService;
 
 import java.io.IOException;
+
 
 public class LoginController {
 

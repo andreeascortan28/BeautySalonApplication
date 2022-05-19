@@ -17,7 +17,7 @@ import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HairSalonController implements Initializable {
+public class HairSalonController /*implements Initializable*/ {
     @FXML
     private Button backField;
     @FXML
@@ -34,15 +34,17 @@ public class HairSalonController implements Initializable {
         stage.setScene(new Scene(root,600,400));
     }
 
-    public void initialize(URL location, ResourceBundle resource){
+    public void initialize(){
         FacilityColumn.setCellValueFactory(new PropertyValueFactory<>("Facility"));
         PriceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
         table.setItems(observableList);
     }
 
     ObservableList<Edit> observableList = FXCollections.observableArrayList(
-            new Edit("Hair cutting",50), new Edit("Colouring", 100),
-            new Edit("Styling", 100));
+            new Edit("Face",50), new Edit("Legs", 100),
+            new Edit("Back and chest", 100), new Edit("Underarms", 50),
+            new Edit("Arms",50));
+
 }
 
 

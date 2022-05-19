@@ -8,6 +8,7 @@ public class Edit {
     private SimpleStringProperty Facility;
     private SimpleIntegerProperty Price;
 
+
     public Edit(String Facility, Integer Price){
         this.Facility = new SimpleStringProperty(Facility);
         this.Price = new SimpleIntegerProperty(Price);

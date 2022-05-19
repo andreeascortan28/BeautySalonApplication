@@ -72,4 +72,3 @@ public class FacialTreatmentsControllerEmployee implements Initializable {
         }
     }
 }
-

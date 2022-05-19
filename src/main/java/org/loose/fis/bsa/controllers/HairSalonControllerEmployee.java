@@ -53,7 +53,9 @@ public class HairSalonControllerEmployee implements Initializable {
             System.out.println(e.getMessage());
         }
     }
-
+    ObservableList<Edit> observableList = FXCollections.observableArrayList(
+            new Edit("Hair cutting",50), new Edit("Colouring", 100),
+            new Edit("Styling", 100));
 
     public void onEditChange(TableColumn.CellEditEvent<Edit, Integer> editStringCellEditEvent) {
         Edit e1 = table.getSelectionModel().getSelectedItem();

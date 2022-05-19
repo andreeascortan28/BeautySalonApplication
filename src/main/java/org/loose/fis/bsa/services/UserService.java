@@ -14,6 +14,7 @@ import org.loose.fis.bsa.model.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -41,6 +42,14 @@ public class UserService {
 
     }
 
+
+    public static Nitrite getDatabase() {
+        return database;
+    }
+
+    public static List<User> usersList() {
+        return userRepository.find().toList();
+    }
 
     public static ObjectRepository<Reservation> getReservationRepository() {
         return reservationRepository;
@@ -228,7 +237,7 @@ public class UserService {
     }
 
 
-    private static String encodePassword(String salt, String password) {
+    public static String encodePassword(String salt, String password) {
         MessageDigest md = getMessageDigest();
         md.update(salt.getBytes(StandardCharsets.UTF_8));
 
