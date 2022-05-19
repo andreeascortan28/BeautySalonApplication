@@ -42,7 +42,7 @@ public class MassageController implements Initializable {
     }
 
     ObservableList<Edit> observableList = FXCollections.observableArrayList(
-            new Edit("Classic massage",300), new Edit("Deep tisue massage", 400),
+            new Edit("Classic massage",300), new Edit("Deep tissue massage", 400),
             new Edit("Hot stone massage",200), new Edit("Sports massage",350),
             new Edit("Thai massage",400));
 }

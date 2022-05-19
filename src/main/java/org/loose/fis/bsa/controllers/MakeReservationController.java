@@ -62,7 +62,7 @@ public class MakeReservationController  {
     private void loadDepartments() {
         //System.out.println("am ajuns in load dep");
         list_departments.remove(list_departments);
-        list_departments.addAll("Hair salon - hair cutting", "Hair salon - Colouring", "Hair salon - Styling",
+        list_departments.addAll("Hair salon - Hair cutting", "Hair salon - Colouring", "Hair salon - Styling",
                 "Make-up - Everyday make-up", "Make-up - Wedding make-up",
                 "Hair removal - Face", "Hair removal - Legs", "Hair removal - Back and chest", "Hair removal - Underarms", "Hair removal - Arms",
                 "Nails - Manicure", "Nails - Pedicure", "Nails - Mani-Pedi",
