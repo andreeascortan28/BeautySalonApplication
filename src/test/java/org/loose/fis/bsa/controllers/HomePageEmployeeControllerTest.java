@@ -1,4 +1,5 @@
 package org.loose.fis.bsa.controllers;
+import static org.junit.jupiter.api.Assertions.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,11 +22,9 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.testfx.assertions.api.Assertions.assertThat;
 @ExtendWith(ApplicationExtension.class)
-
-public class HomePageCustomerControllerTest {
+public class HomePageEmployeeControllerTest {
     @AfterEach
     void tearDown() {
-
         UserService.getDatabase().close();
     }
 
@@ -40,16 +39,20 @@ public class HomePageCustomerControllerTest {
     @Start
     void start(Stage primaryStage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("customerPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("employeePage.fxml"));
         primaryStage.setTitle("BEAUTY SALON");
-        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
     }
     @Test
-    void testPaginaClient(FxRobot robot) {
-        robot.clickOn("#handleViewFacilities");
+    void testPaginaAngajat(FxRobot robot) {
+        robot.clickOn("#handleEditReservation");
         robot.clickOn("#backField");
-        robot.clickOn("#handleViewReservations");
+        robot.clickOn("#handleChangePrices");
+        robot.clickOn("#backField");
+        robot.clickOn("#handleDeleteReservations");
+        robot.clickOn("#backField");
+        robot.clickOn("#handleViewSchedule");
         robot.clickOn("#backField");
         robot.clickOn("#signout");
     }
