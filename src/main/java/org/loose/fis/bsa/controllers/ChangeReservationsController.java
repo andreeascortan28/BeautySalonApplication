@@ -98,7 +98,6 @@ public class ChangeReservationsController /* implements Initializable */{
     public void onEditChange4(TableColumn.CellEditEvent<Reservation, String> editStringCellEditEvent){
         Reservation e4 = (Reservation) table.getSelectionModel().getSelectedItem();
         e4.setDepartmentfacility(editStringCellEditEvent.getNewValue());
-
     }
 
     public void saveChanges() {
@@ -106,7 +105,6 @@ public class ChangeReservationsController /* implements Initializable */{
             UserService.updateReservations(e);
         }
     }
-
     @FXML
     void handleInapoiAction() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("employeePage.fxml"));
