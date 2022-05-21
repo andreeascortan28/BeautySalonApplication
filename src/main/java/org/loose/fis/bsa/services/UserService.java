@@ -132,7 +132,7 @@ public class UserService {
         departmentFacilityRepository.insert(new DepartmentFacility("Facial treatments - Classic facial", 100));
         departmentFacilityRepository.insert(new DepartmentFacility("Facial treatments - Acne reduction facial", 150));
         departmentFacilityRepository.insert(new DepartmentFacility("Facial treatments - LED light therapy", 300));
-        departmentFacilityRepository.insert(new DepartmentFacility("Facial treatments - Acupunture facial", 250));
+        departmentFacilityRepository.insert(new DepartmentFacility("Facial treatments - Acupuncture facial", 250));
 
 
         departmentFacilityRepository.insert(new DepartmentFacility("Massage - Classic facial", 100));
