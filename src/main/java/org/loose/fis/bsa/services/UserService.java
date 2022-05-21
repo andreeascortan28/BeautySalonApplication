@@ -39,7 +39,8 @@ public class UserService {
         reservationRepository = database.getRepository(Reservation.class);
         departmentFacilityRepository = database.getRepository(DepartmentFacility.class);
         addDepartments();
-
+        //allResevations();
+    //removeNullId();
     }
 
 
@@ -87,6 +88,15 @@ public class UserService {
         departmentFacilityRepository.update(ObjectFilters.eq("departmentfacility",name),
                 new DepartmentFacility(name,newPrice));
     }
+
+    /*public static void allResevations(){
+        for(Reservation r : reservationRepository.find())
+            System.out.println(""+r.getDepartmentfacility()+r.getDate()+r.getId());
+    }*/
+
+    /*public static void removeNullId(){
+        reservationRepository.remove(ObjectFilters.eq("id",null));
+    }*/
 
     public static void updateReservations(Reservation e){
         reservationRepository.update(e);

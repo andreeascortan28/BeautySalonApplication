@@ -1,0 +1,2 @@
+java -jar --module-path "D:\Kituri\openjfx-18.0.1_windows-x64_bin-sdk\javafx-sdk-18.0.1\lib"
+--add-modules javafx.controls,javafx.fxml ../simple-registration-example-0.1.0-SNAPSHOT-jar-with-dependencies.jar
