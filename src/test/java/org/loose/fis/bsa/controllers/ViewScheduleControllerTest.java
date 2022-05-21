@@ -21,7 +21,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(ApplicationExtension.class)
-class DeleteReservationsControllerTest {
+class ViewScheduleControllerTest {
 
     @AfterEach
     void tearDown() {
@@ -39,17 +39,16 @@ class DeleteReservationsControllerTest {
 
     @Start
     void start(Stage primarystage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("deleteReservations.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("viewSchedule.fxml"));
         primarystage.setScene(new Scene(root, 600,400));
         primarystage.setTitle("Beauty Salon App");
         primarystage.show();
     }
 
     @Test
-    @DisplayName("Successful delete")
+    @DisplayName("The employee viewed the schedule")
     void testHomePageClient(FxRobot robot) {
-        //robot.clickOn("#deleteButton");
+        robot.clickOn("#backButton");
     }
-
 
 }
