@@ -22,3 +22,4 @@ Pentru a clona repository-ul, puteți folosi comanda:
 
 ## Rulare
 Pentru a rula aplicația, puteți folosi comanda "mvn javafx:run".
+

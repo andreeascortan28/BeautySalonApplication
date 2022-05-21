@@ -52,6 +52,10 @@ public class UserService {
         return userRepository.find().toList();
     }
 
+    public static List<Reservation> reservationList() {
+        return reservationRepository.find().toList();
+    }
+
     public static ObjectRepository<Reservation> getReservationRepository() {
         return reservationRepository;
     }
@@ -197,7 +201,7 @@ public class UserService {
             throw new AllFieldsAreMandatory();
     }
 
-    private static void checkFreeWindow(String departmentfacility, String date, String hour) throws MakingReservationException {
+    public static void checkFreeWindow(String departmentfacility, String date, String hour) throws MakingReservationException {
         int ok = 0;
         //System.out.println("Am intrat in check free window");
         for(Reservation reservation : reservationRepository.find())
@@ -214,7 +218,7 @@ public class UserService {
     public static void checkFreeWindowForUser(String username, String date, String hour) throws NotFreeWindowException {
 
         int ok = 0;
-        System.out.println("am intrat in check free window user");
+        //System.out.println("am intrat in check free window user");
         for(Reservation reservation : reservationRepository.find()) {
             if(username.equals(reservation.getUsername())) {
                 if(date.equals(reservation.getDate()) && hour.equals(reservation.getHour()))

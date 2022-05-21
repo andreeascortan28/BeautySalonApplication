@@ -1,19 +1,29 @@
 package org.loose.fis.bsa.services;
 
+import javafx.scene.control.ChoiceBox;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.*;
 import org.loose.fis.bsa.exceptions.*;
+import org.loose.fis.bsa.model.Reservation;
 import org.loose.fis.bsa.model.User;
+
+import java.util.Date;
 
 import static org.testfx.assertions.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserServiceTest {
-/*
+
 
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
     public static final String ROLE = "role";
+    public static final String DEPARTMENTFACILITY = "Hair salon - Styling";
+    public static final String DATE = "02/04/2022";
+    public static final String HOUR = "14:00";
+    public static final int PRICE = 150;
+
+
 
     @BeforeAll
     static void beforeAll() {
@@ -28,7 +38,7 @@ class UserServiceTest {
     @BeforeEach
     void setUp() throws Exception {
         FileSystemService.APPLICATION_FOLDER = ".test-BeautySalonApplication";
-        //FileUtils.cleanDirectory(FileSystemService.getApplicationHomeFolder().toFile());
+        FileUtils.cleanDirectory(FileSystemService.getApplicationFolder().toFile());
         UserService.initDatabase();
     }
 
@@ -64,6 +74,21 @@ class UserServiceTest {
         assertThat(user.getRole()).isEqualTo("Employee");
     }
 
+
+    @Test
+    @DisplayName("Reservation is added successfully")
+    void testAddReservation() throws EmptyDepartmentFieldException, EmptyHourFieldException, EmptyDateFieldException, MakingReservationException, NotFreeWindowException, WrongDateException{
+        UserService.addReservation(USERNAME, DEPARTMENTFACILITY, DATE, HOUR, PRICE);
+        assertThat(UserService.reservationList()).isNotEmpty();
+        assertThat(UserService.reservationList()).size().isEqualTo(1);
+        Reservation reservation = UserService.reservationList().get(0);
+        assertThat(reservation).isNotNull();
+        assertThat(reservation.getUsername()).isEqualTo(USERNAME);
+        assertThat(reservation.getDepartmentfacility()).isEqualTo(DEPARTMENTFACILITY);
+        assertThat(reservation.getDate()).isEqualTo(DATE);
+        assertThat(reservation.getHour()).isEqualTo(HOUR);
+
+    }
 
     //Exceptions
 
@@ -117,5 +142,29 @@ class UserServiceTest {
     }
 
 
-*/
+
+    @Test
+    @DisplayName("There is already an reservation at this hour")
+    void testDepartmentNotEmpty(){
+        assertThrows(MakingReservationException.class, () -> {
+            UserService.checkFreeWindow(DEPARTMENTFACILITY, DATE, HOUR);
+        });
+    }
+
+    @Test
+    @DisplayName("There is already a reservation made at this hour for this user")
+    void testUserScheduleNotEmpty(){
+        assertThrows(NotFreeWindowException.class, () -> {
+            UserService.checkFreeWindow(USERNAME, DATE, HOUR);
+        });
+    }
+
+    @Test
+    @DisplayName("It was entered a wrong form of the date")
+    void testReservationWrongDate() {
+        assertThrows(WrongDateException.class, () -> {
+            UserService.checkDate(DATE);
+        });
+    }
+
 }

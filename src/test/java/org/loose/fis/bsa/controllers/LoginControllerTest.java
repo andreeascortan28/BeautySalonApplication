@@ -23,7 +23,7 @@ import java.io.IOException;
 @ExtendWith(ApplicationExtension.class)
 class LoginControllerTest {
 
-/*
+
     @AfterEach
     void tearDown() {
         UserService.getDatabase().close();
@@ -34,7 +34,7 @@ class LoginControllerTest {
     void setUp() throws Exception {
         FileSystemService.APPLICATION_FOLDER = ".test-BeautySalonApplication";
         FileSystemService.initDirectory();
-        //FileUtils.cleanDirectory(FileSystemService.getApplicationHomeFolder().toFile());
+        FileUtils.cleanDirectory(FileSystemService.getApplicationFolder().toFile());
         UserService.initDatabase();
     }
 
@@ -55,6 +55,8 @@ class LoginControllerTest {
         robot.write("USERNAME");
         robot.clickOn("#passwordField");
         robot.write("PASSWORD");
+        robot.clickOn("#role");
+        robot.clickOn("Customer");
         robot.clickOn("#loginButton");
     }
 
@@ -66,8 +68,10 @@ class LoginControllerTest {
         robot.write("USERNAME");
         robot.clickOn("#passwordField");
         robot.write("PASSWORD");
+        robot.clickOn("#role");
+        robot.clickOn("Employee");
         robot.clickOn("#loginButton");
     }
-*/
+
 
 }
