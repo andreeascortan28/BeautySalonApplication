@@ -45,12 +45,30 @@ public class HomePageCustomerControllerTest {
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
     }
+    /*
     @Test
+
     void testPaginaClient(FxRobot robot) {
         robot.clickOn("#handleViewFacilities");
         robot.clickOn("#backField");
         robot.clickOn("#handleViewReservations");
         robot.clickOn("#backField");
         robot.clickOn("#signout");
+    }
+    */
+
+    @Test
+    void testHomePageClient(FxRobot robot) {
+        robot.clickOn("#viewFacilitiesButton");
+        robot.clickOn("#backField");
+
+        robot.clickOn("#viewReservationButton");
+        robot.clickOn("#backButton");
+
+        robot.clickOn("#makeReservationButton");
+        robot.clickOn("#backButton");
+
+
+
     }
 }
