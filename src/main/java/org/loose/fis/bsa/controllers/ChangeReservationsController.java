@@ -105,7 +105,6 @@ public class ChangeReservationsController /* implements Initializable */{
             UserService.updateReservations(e);
         }
     }
-
     @FXML
     void handleInapoiAction() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("employeePage.fxml"));
