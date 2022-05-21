@@ -87,7 +87,6 @@ public class RegistrationControllerTest {
         robot.clickOn("Employee");
         robot.clickOn("#registerButton");
         assertThat(robot.lookup("#registrationMessage").queryText()).hasText(String.format("An account with this username already exists %s", "Erika"));
-
     }
 }
 
