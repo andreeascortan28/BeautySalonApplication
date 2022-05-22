@@ -29,7 +29,7 @@
          <children>
             <TableView fx:id="table" layoutX="36.0" layoutY="14.0" prefHeight="202.0" prefWidth="527.0">
               <columns>
-                <TableColumn fx:id="clientUsername" prefWidth="109.6" text="Client Username" />
+                <TableColumn fx:id="clientUsername" prefWidth="109.6" text="Client's Username" />
                 <TableColumn fx:id="departmentfacility" prefWidth="170.4" text="Department and facility" />
                   <TableColumn fx:id="date" prefWidth="84.0" text="Date" />
                   <TableColumn fx:id="hour" prefWidth="84.0" text="Hour" />

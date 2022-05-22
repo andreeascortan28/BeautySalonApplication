@@ -44,6 +44,8 @@ public class HomePageEmployeeControllerTest {
         primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
     }
+
+    /*
     @Test
     void testPaginaAngajat(FxRobot robot) {
         robot.clickOn("#handleEditReservation");
@@ -55,5 +57,22 @@ public class HomePageEmployeeControllerTest {
         robot.clickOn("#handleViewSchedule");
         robot.clickOn("#backField");
         robot.clickOn("#signout");
+    }
+    */
+
+    @Test
+    void testHomePageEmployee(FxRobot robot) {
+        robot.clickOn("#editReservationsButton");
+        robot.clickOn("#back");
+
+        //robot.clickOn("#changePricesButton");
+
+        robot.clickOn("#deleteReservationsButton");
+        robot.clickOn("#backButton");
+
+        robot.clickOn("#viewScheduleButton");
+        robot.clickOn("#backButton");
+
+        robot.clickOn("#signOutButton");
     }
 }
