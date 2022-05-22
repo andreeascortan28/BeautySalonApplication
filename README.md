@@ -22,4 +22,7 @@ Pentru a clona repository-ul, puteți folosi comanda:
 
 ## Rulare
 Pentru a rula aplicația, puteți folosi comanda "mvn javafx:run".
+Pentru a rula aplicatia sub forma de jar, trebuie sa mutati fisierul "run.bat" in "target", sa va plasati in acest folder, folosind comanda "cd target", iar apoi sa rulati jar-ul folosind comanda "./run.bat", scrisa in terminal.
+In "run.bat" trebuie schimbat path-ul de la "javafx-sdk" (unde este instalat pe propriul computer).
+
 
