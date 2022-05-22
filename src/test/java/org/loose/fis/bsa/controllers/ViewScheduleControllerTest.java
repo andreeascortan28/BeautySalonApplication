@@ -31,7 +31,7 @@ class ViewScheduleControllerTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        FileSystemService.APPLICATION_FOLDER = ".test-BeautySalonApplication";
+        FileSystemService.setApplicationFolder(".test-BeautySalonApplication");
         FileSystemService.initDirectory();
         FileUtils.cleanDirectory(FileSystemService.getApplicationFolder().toFile());
         UserService.initDatabase();
